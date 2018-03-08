@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/08 22:44:11 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/08 22:51:44 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	del(void *content, size_t content_size)
 {
+	(void)content_size;
 	free(content);
 }
 
@@ -45,6 +46,5 @@ int main(int ac, const char **av)
 	}
 	ft_lstdel(&lst, del);
 	free(tmp);
-	free(new);
 	return (0);
 }
