@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 15:01:25 by eparisot          #+#    #+#             */
-/*   Updated: 2017/11/23 17:07:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/09 01:24:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char				*ft_strnstr(const char *s, const char *to_find, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t len);
 int					ft_atoi(const char *s);
-
+int					ft_atoi_int(const char *s);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
