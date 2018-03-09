@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 01:36:49 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/09 20:11:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,51 @@ int		check(int ac, const char **av)
 		}
 		if (ft_atoi_int(av[i]) == -1)
 			return (0);
-	i++;
+		i++;
 	}
+	return (1);
+}
+
+int		check_doubles(t_list *lst)
+{
+	t_list	*tmp;
+	t_list	*tmp2;
+	int		i;
+	int		j;
+
+	tmp = lst;
+	tmp2 = lst;
+	i = 0;
+	j = 0;
+	while (lst)
+	{
+		j = 0;
+		tmp2 = tmp;
+		while (tmp2)
+		{
+			if ((*(int*)lst->content) == (*(int*)tmp2->content) && i != j)
+				return (0);
+			j++;
+			tmp2 = tmp2->next;
+		}
+		i++;
+		lst = lst->next;
+	}
+	lst = tmp;
 	return (1);
 }
 
 int		main(int ac, const char **av)
 {
-	t_list *lst;
-	t_list *new;
+	t_list	*lst;
+	t_list	*new;
 	int		*tmp;
+	int		mem;
 
-	if ((tmp = (int*)malloc(sizeof(int*))) == NULL)
-		return (0);
-	if (check(ac, av))
+	if (check((mem = ac), av))
 	{
+		if ((tmp = (int*)malloc(sizeof(int*))) == NULL)
+			return (0);
 		*tmp = ft_atoi(av[--ac]);
 		lst = ft_lstnew(tmp, sizeof(int));
 		while (--ac)
@@ -75,11 +105,12 @@ int		main(int ac, const char **av)
 			new = ft_lstnew(tmp, sizeof(int));
 			ft_lstadd(&lst, new);
 		}
-		lst_print(lst, new);
+		if (check_doubles(lst) && check(mem, av))
+			lst_print(lst, new);
+		else
+			ft_printf("Error\n");
 		ft_lstdel(&lst, del);
+		free(tmp);
 	}
-	else
-		ft_printf("Error\n");
-	free(tmp);
 	return (0);
 }
