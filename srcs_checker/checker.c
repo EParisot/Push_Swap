@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 21:55:36 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/09 21:58:19 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	checker(t_list *lst_a)
 		return ;
 	while (get_next_line(1, line))
 	{
+		//////////
 		ft_printf("readen : %s\n", *line);
+		/////////
 		free(*line);
 	}
 	free(tmp);
