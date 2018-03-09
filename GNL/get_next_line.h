@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 21:52:06 by eparisot         ###   ########.fr       */
+/*   Created: 2017/11/07 10:57:54 by eparisot          #+#    #+#             */
+/*   Updated: 2018/03/09 21:56:45 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
+#ifndef GET_NEXT_LINE_H
 
-# define CHECKER_H
+# define GET_NEXT_LINE_H
 
-#include "../libft/libft.h"
-#include "../printf/srcs/ft_printf.h"
-#include "../GNL/get_next_line.h"
+# define BUFF_SIZE 3
 
-void	lst_print(t_list *lst, t_list * tmp);
-void	checker(t_list *lst);
+# include "../libft/libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+
+int		get_next_line(const int fd, char **line);
 
 #endif
