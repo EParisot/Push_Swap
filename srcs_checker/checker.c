@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 21:10:17 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/09 21:36:12 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	checker(t_list *lst_a)
 	if((tmp = (t_list*)malloc(sizeof(t_list*))) == NULL)
 		return ;
 	lst_print(lst_a, tmp);
+	free(tmp);
 }
