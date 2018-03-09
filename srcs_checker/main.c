@@ -6,13 +6,12 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 01:28:05 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/09 01:34:47 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../printf/srcs/ft_printf.h"
-#include <limits.h>
 
 void	del(void *content, size_t content_size)
 {
