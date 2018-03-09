@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 01:34:47 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/09 01:36:49 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int		main(int ac, const char **av)
 	t_list *new;
 	int		*tmp;
 
-	new = NULL;
 	if ((tmp = (int*)malloc(sizeof(int*))) == NULL)
 		return (0);
 	if (check(ac, av))
