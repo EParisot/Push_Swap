@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 15:25:41 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:02:59 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		main(int ac, const char **av)
 	{
 		*tmp = ft_atoi(av[ac]);
 		new = ft_lstnew(tmp, sizeof(int));
-		ft_lstadd(&lst, new);
+		ft_lstaddend(&lst, new);
 	}
 	if (!check_doubles(lst))
 		ft_printf("Error\n");
