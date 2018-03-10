@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 21:37:06 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/10 15:25:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		main(int ac, const char **av)
 	int		*tmp;
 
 	tmp = NULL;
-	if (!check(ac, av) || (tmp = (int*)malloc(sizeof(int*))) == NULL)
+	if (!check(ac, av) || (tmp = (int*)malloc(sizeof(int *))) == NULL)
 	{
 		ft_printf("Error\n");
 		return (0);
