@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 16:35:42 by eparisot         ###   ########.fr       */
+/*   Created: 2018/03/10 16:08:39 by eparisot          #+#    #+#             */
+/*   Updated: 2018/03/10 16:29:39 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
+#ifndef COMMON_H
 
-# define CHECKER_H
+# define COMMON_H
 
 #include "../libft/libft.h"
 #include "../printf/srcs/ft_printf.h"
 #include "../GNL/get_next_line.h"
 
-void	lst_print(t_list *lst);
-void	checker(t_list *lst);
-int		read_instruct(t_list *lst_a, t_list *lst_b, char *instruct);
-void	del(void *content, size_t content_size);
+void	sa(t_list *lst_a);
+void	sb(t_list *lst_b);
+void	ss(t_list *lst_a, t_list *lst_b);
+
+void	pa(t_list *lst_a, t_list *lst_b);
+void	pb(t_list *lst_a, t_list *lst_b);
+
+void	ra(t_list *lst_a);
+void	rb(t_list *lst_b);
+void	rr(t_list *lst_a, t_list *lst_b);
+
+void	rra(t_list *lst_a);
+void	rrb(t_list *lst_b);
+void	rrr(t_list *lst_a, t_list *lst_b);
 
 #endif

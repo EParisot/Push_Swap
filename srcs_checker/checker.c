@@ -6,11 +6,12 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 15:48:12 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/10 16:37:01 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include "../srcs_common/common.h"
 
 void	lst_print(t_list *lst)
 {
@@ -28,37 +29,48 @@ void	lst_print(t_list *lst)
 void	checker(t_list *lst_a)
 {
 	t_list *lst_b;
-	int *tmp;
 	char **line;
 
-	if ((tmp = (int *)malloc(sizeof(int *))) == NULL)
-		return ;
-	tmp = NULL;
 	if ((line = (char **)malloc(sizeof(char *))) == NULL)
 		return ;
-	lst_b = ft_lstnew(tmp, sizeof(int));
+	lst_b = ft_lstnew(NULL, sizeof(int));
 	while (get_next_line(1, line))
 	{
+		if (!read_instruct(lst_a, lst_b, *line))
+		{
+			ft_printf("Error\n");
+			return ;
+		}
+		free(*line);
+	}
+	ft_lstdel(&lst_b, del);
+	free(line);
+}
+
+int		read_instruct(t_list *lst_a, t_list *lst_b, char *instruct)
+{
+	if (ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", instruct))
+	{
+		ft_printf("instruction : %s\n", instruct);
+		(ft_strcmp(instruct, "sa")) ? sa(lst_a) : 0;
+		(ft_strcmp(instruct, "sb")) ? sb(lst_b) : 0;
+		(ft_strcmp(instruct, "ss")) ? ss(lst_a, lst_b) : 0;
+		(ft_strcmp(instruct, "pa")) ? pa(lst_a, lst_b) : 0;
+		(ft_strcmp(instruct, "pb")) ? pb(lst_a, lst_b) : 0;
+		(ft_strcmp(instruct, "ra")) ? ra(lst_a) : 0;
+		(ft_strcmp(instruct, "rb")) ? rb(lst_b) : 0;
+		(ft_strcmp(instruct, "rr")) ? rr(lst_a, lst_b) : 0;
+		(ft_strcmp(instruct, "rra")) ? rra(lst_a) : 0;
+		(ft_strcmp(instruct, "rrb")) ? rrb(lst_b) : 0;
+		(ft_strcmp(instruct, "rrr")) ? rrr(lst_a, lst_b) : 0;
 		//////////
-		//ft_printf("readen : %s\n", *line);
-		/////////
-		read_instruct(lst_a, lst_b, *line);
 		ft_printf("--\n");
 		lst_print(lst_a);
 		ft_printf("--\n");
 		lst_print(lst_b);
 		ft_printf("--\n");
-		free(*line);
 	}
-	ft_lstdel(&lst_b, del);
-	free(line);
-	free(tmp);
-}
-
-void	read_instruct(t_list *lst_a, t_list *lst_b, char *instruct)
-{
-	(void)lst_a;
-	(void)lst_b;
-	(void)instruct;
-	return ;
+	else
+		return (0);
+	return (1);
 }
