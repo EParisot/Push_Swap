@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 16:35:42 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:09:52 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define CHECKER_H
 
-#include "../libft/libft.h"
-#include "../printf/srcs/ft_printf.h"
-#include "../GNL/get_next_line.h"
+# include "../libft/libft.h"
+# include "../printf/srcs/ft_printf.h"
+# include "../GNL/get_next_line.h"
 
 void	lst_print(t_list *lst);
 void	checker(t_list *lst);

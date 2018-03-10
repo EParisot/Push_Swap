@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 18:00:21 by eparisot         ###   ########.fr       */
+/*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
+/*   Updated: 2018/03/10 19:24:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	lst_print(t_list *lst)
 
 void	checker(t_list *lst_a)
 {
-	t_list *lst_b;
-	char **line;
+	t_list	*lst_b;
+	char	**line;
 
 	if ((line = (char **)malloc(sizeof(char *))) == NULL)
 		return ;
@@ -51,7 +51,6 @@ int		read_instruct(t_list *lst_a, t_list *lst_b, char *instruct)
 {
 	if (ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", instruct))
 	{
-		ft_printf("instruction : %s\n", instruct);
 		(!ft_strcmp(instruct, "sa")) ? sa(lst_a) : 0;
 		(!ft_strcmp(instruct, "sb")) ? sb(lst_b) : 0;
 		(!ft_strcmp(instruct, "ss")) ? ss(lst_a, lst_b) : 0;
@@ -64,6 +63,7 @@ int		read_instruct(t_list *lst_a, t_list *lst_b, char *instruct)
 		(!ft_strcmp(instruct, "rrb")) ? rrb(lst_b) : 0;
 		(!ft_strcmp(instruct, "rrr")) ? rrr(lst_a, lst_b) : 0;
 		//////////
+		ft_printf("instruction : %s\n", instruct);
 		ft_printf("--\n");
 		lst_print(lst_a);
 		ft_printf("--\n");

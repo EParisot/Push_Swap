@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:57:48 by eparisot          #+#    #+#             */
-/*   Updated: 2017/12/13 14:49:18 by eparisot         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:05:05 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_realloc(char **line, size_t size)
 {
-	size_t		len;
+	size_t	len;
 	char	new[ft_strlen(*line) + 1];
 
 	len = 0;

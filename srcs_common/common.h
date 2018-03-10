@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:08:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 18:31:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/10 19:10:04 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 # define COMMON_H
 
-#include "../libft/libft.h"
-#include "../printf/srcs/ft_printf.h"
-#include "../GNL/get_next_line.h"
+# include "../libft/libft.h"
+# include "../printf/srcs/ft_printf.h"
+# include "../GNL/get_next_line.h"
 
 void	sa(t_list *lst_a);
 void	sb(t_list *lst_b);
