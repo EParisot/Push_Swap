@@ -6,17 +6,11 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/10 19:02:59 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/14 16:31:45 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-void	del(void *content, size_t content_size)
-{
-	(void)content_size;
-	free(content);
-}
 
 int		check(int ac, const char **av)
 {
