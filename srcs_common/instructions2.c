@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:16:28 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 17:05:55 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/14 17:49:42 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,30 @@
 
 void	ra(t_list **lst_a)
 {
+	t_list *tmp;
+
+	tmp = *lst_a;
 	if (ft_lstcount(*lst_a) > 1)
 	{
-		ft_lstaddend(lst_a, ft_lstnew(((*lst_a)->content), sizeof(int)));
-		*lst_a = (*lst_a)->next;
+		while ((tmp->next)->next)
+			tmp = tmp->next;
+		ft_lstadd(lst_a, ft_lstnew((tmp->next)->content, sizeof(int)));
+		tmp->next = NULL;
 	}
 	return ;
 }
 
 void	rb(t_list **lst_b)
 {
+	t_list *tmp;
+
+	tmp = *lst_b;
 	if (ft_lstcount(*lst_b) > 1)
 	{
-		ft_lstaddend(lst_b, ft_lstnew(((*lst_b)->content), sizeof(int)));
-		*lst_b = (*lst_b)->next;
+		while ((tmp->next)->next)
+			tmp = tmp->next;
+		ft_lstadd(lst_b, ft_lstnew((tmp->next)->content, sizeof(int)));
+		tmp->next = NULL;
 	}
 	return ;
 }
@@ -35,6 +45,6 @@ void	rb(t_list **lst_b)
 void	rr(t_list **lst_a, t_list **lst_b)
 {
 	ra(lst_a);
-	ra(lst_b);
+	rb(lst_b);
 	return ;
 }
