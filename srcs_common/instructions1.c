@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sa.c                                               :+:      :+:    :+:   */
+/*   instructions1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:16:28 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 22:42:02 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/15 00:14:52 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,38 @@
 
 void	sa(t_list **lst_a)
 {
-(void)*lst_a;
+	t_list	*tmp;
+	int		*mem;
+
+	tmp = *lst_a;
+	mem = NULL;
+	if (ft_lstcount(*lst_a) > 1)
+	{
+		while ((*lst_a)->next->next)
+			*lst_a = (*lst_a)->next;
+		mem = (int*)(*lst_a)->content;
+		(*lst_a)->content = (*lst_a)->next->content;
+		(*lst_a)->next->content = mem;
+		*lst_a = tmp;
+	}
 }
 
 void	sb(t_list **lst_b)
 {
-(void)*lst_b;
+	t_list	*tmp;
+	int		*mem;
+
+	tmp = *lst_b;
+	mem = NULL;
+	if (ft_lstcount(*lst_b) > 1)
+	{
+		while ((*lst_b)->next->next)
+			*lst_b = (*lst_b)->next;
+		mem = (int*)(*lst_b)->content;
+		(*lst_b)->content = (*lst_b)->next->content;
+		(*lst_b)->next->content = mem;
+		*lst_b = tmp;
+	}
 }
 
 void	ss(t_list **lst_a, t_list **lst_b)
