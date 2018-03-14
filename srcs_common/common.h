@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:08:39 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 17:06:51 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/14 21:44:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 void	del(void *content, size_t content_size);
 
-void	sa(t_list *lst_a);
-void	sb(t_list *lst_b);
-void	ss(t_list *lst_a, t_list *lst_b);
+void	sa(t_list **lst_a);
+void	sb(t_list **lst_b);
+void	ss(t_list **lst_a, t_list **lst_b);
 
 void	pa(t_list *lst_a, t_list *lst_b);
 void	pb(t_list *lst_a, t_list *lst_b);

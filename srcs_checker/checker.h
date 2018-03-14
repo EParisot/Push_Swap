@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 16:38:45 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/14 19:14:44 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../GNL/get_next_line.h"
 
 void	lst_print(t_list *lst);
-void	checker(t_list *lst);
+void	checker(t_list **lst);
 int		read_instruct(t_list **lst_a, t_list **lst_b, char *instruct);
 void	del(void *content, size_t content_size);
 

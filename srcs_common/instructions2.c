@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:16:28 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 17:49:42 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/14 20:24:12 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ra(t_list **lst_a)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *lst_a;
 	if (ft_lstcount(*lst_a) > 1)

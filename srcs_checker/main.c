@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 16:31:45 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/14 21:31:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int		main(int ac, const char **av)
 	t_list	*new;
 	int		*tmp;
 
-	tmp = NULL;
 	if (!check(ac, av) || (tmp = (int*)malloc(sizeof(int *))) == NULL)
 	{
 		ft_printf("Error\n");
@@ -91,8 +90,9 @@ int		main(int ac, const char **av)
 	if (!check_doubles(lst))
 		ft_printf("Error\n");
 	else
-		checker(lst);
-	ft_lstdel(&lst, del);
+		checker(&lst);
+	//ft_lstdel(&lst, del);
 	free(tmp);
+	free(new);
 	return (0);
 }
