@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:16:28 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/15 20:19:17 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/15 20:23:20 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,17 @@ void	ss(t_list **lst_a, t_list **lst_b)
 	sb(lst_b);
 }
 
-void	pa(t_list *lst_a, t_list *lst_b)
+void	pa(t_list *lsta, t_list *lst_b)
 {
 	while (lst_b && ft_lstcount(lst_b) && lst_b->content != NULL)
 	{
 		if (lst_b->next && (lst_b->next)->next == NULL)
 		{
-			if (lst_a->content == NULL)
-				lst_a->content = (lst_b->next)->content;
+			if (lsta->content == NULL)
+				lsta->content = (lst_b->next)->content;
 			else
 			{
-				ft_lstaddend(&lst_a, ft_lstnew(((int*)lst_b->next->content), sizeof(int)));
+				ft_lstaddend(&lsta, ft_lstnew(((int*)lst_b->next->content), 4));
 				free(lst_b->next->content);
 			}
 			free(lst_b->next);
@@ -72,10 +72,10 @@ void	pa(t_list *lst_a, t_list *lst_b)
 		}
 		else if (lst_b->next == NULL)
 		{
-			if (lst_a->content == NULL)
-				lst_a->content = lst_b->content;
+			if (lsta->content == NULL)
+				lsta->content = lst_b->content;
 			else
-				ft_lstaddend(&lst_a, ft_lstnew(((int *)lst_b->content), sizeof(int)));
+				ft_lstaddend(&lsta, ft_lstnew(((int *)lst_b->content), 4));
 			free(lst_b->content);
 			lst_b->content = NULL;
 		}
@@ -83,17 +83,17 @@ void	pa(t_list *lst_a, t_list *lst_b)
 	}
 }
 
-void	pb(t_list *lst_a, t_list *lst_b)
+void	pb(t_list *lst_a, t_list *lstb)
 {
 	while (lst_a && ft_lstcount(lst_a) && lst_a->content != NULL)
 	{
 		if (lst_a->next && (lst_a->next)->next == NULL)
 		{
-			if (lst_b->content == NULL)
-				lst_b->content = (lst_a->next)->content;
+			if (lstb->content == NULL)
+				lstb->content = (lst_a->next)->content;
 			else
 			{
-				ft_lstaddend(&lst_b, ft_lstnew(((int*)lst_a->next->content), sizeof(int)));
+				ft_lstaddend(&lstb, ft_lstnew(((int*)lst_a->next->content), 4));
 				free(lst_a->next->content);
 			}
 			free(lst_a->next);
@@ -101,10 +101,10 @@ void	pb(t_list *lst_a, t_list *lst_b)
 		}
 		else if (lst_a->next == NULL)
 		{
-			if (lst_b->content == NULL)
-				lst_b->content = lst_a->content;
+			if (lstb->content == NULL)
+				lstb->content = lst_a->content;
 			else
-				ft_lstaddend(&lst_b, ft_lstnew(((int *)lst_a->content), sizeof(int)));
+				ft_lstaddend(&lstb, ft_lstnew(((int *)lst_a->content), 4));
 			free(lst_a->content);
 			lst_a->content = NULL;
 		}
