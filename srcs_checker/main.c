@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 21:31:41 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/15 18:34:27 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ int		main(int ac, const char **av)
 		ft_printf("Error\n");
 	else
 		checker(&lst);
-	//ft_lstdel(&lst, del);
+	ft_lstdel(&lst, del);
 	free(tmp);
-	free(new);
 	return (0);
 }
