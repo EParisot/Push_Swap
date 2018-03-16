@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/16 15:09:30 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 16:27:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int		check_doubles(t_list *lst)
 int		main(int ac, const char **av)
 {
 	t_list	*lst;
-	t_list	*new;
 	int		*tmp;
 
 	if (!check(ac, av) || (tmp = (int*)malloc(sizeof(int *))) == NULL)
@@ -83,8 +82,7 @@ int		main(int ac, const char **av)
 		while (--ac)
 		{
 			*tmp = ft_atoi(av[ac]);
-			new = ft_lstnew(tmp, sizeof(int));
-			ft_lstaddend(&lst, new);
+			ft_lstaddend(&lst, ft_lstnew(tmp, sizeof(int)));
 		}
 		if (!check_doubles(lst))
 			ft_printf("Error\n");
