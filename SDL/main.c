@@ -14,7 +14,7 @@ SDL_Window	*w_init(SDL_Window *window)
 			SDL_WINDOWPOS_UNDEFINED, \
 			SDL_WINDOWPOS_UNDEFINED, \
 			800, 600, \
-			SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+			SDL_WINDOW_SHOWN);
 	if (window == 0)
 	{
 		ft_printf("Error\n");
@@ -37,9 +37,9 @@ void	w_draw(SDL_Renderer *renderer, int x, int y, int w, int h)
 	SDL_RenderPresent(renderer);
 }
 
-void		w_clear(SDL_Renderer *renderer)
+void	w_clear(SDL_Renderer *renderer)
 {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
 }
@@ -62,15 +62,17 @@ int		main()
 	window = w_init(window);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-	w_draw(renderer, 50, 50, 50, 200);
-	sleep(2);
-	w_clear(renderer);
+
+
+
+
 
 	while (!end)
 	{
 		SDL_WaitEvent(&events);
 		if(events.window.event == SDL_WINDOWEVENT_CLOSE)
 			end = 1;
+		w_draw(renderer, 50, 50, 50, 200);
 	}
 
 	w_destroy(window);
