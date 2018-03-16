@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/16 17:01:27 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 18:24:25 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,29 @@ void	lst_print(t_list *lst)
 	lst = tmp;
 }
 
+void	verbose(t_list **lst_a, t_list **lst_b, char *instruct)
+{
+	(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
+	ft_printf("instruction : %s\n", instruct);
+	ft_printf("--\n");
+	lst_print(*lst_a);
+	ft_printf("--\n");
+	lst_print(*lst_b);
+	ft_printf("--\n");
+}
+
 int		check_ordered(t_list *lst_a)
 {
 	while (lst_a->next)
 	{
-		if ((*(int*)lst_a->next->content) < (*(int*)lst_a->content))
+		if ((*(int*)lst_a->next->content) > (*(int*)lst_a->content))
 			return (0);
 		lst_a = lst_a->next;
 	}
 	return (1);
 }
 
-void	checker(t_list **lst_a)
+void	checker(t_list **lst_a, int *v_fl)
 {
 	t_list	*lst_b;
 	char	**line;
@@ -47,7 +58,7 @@ void	checker(t_list **lst_a)
 	lst_b = ft_lstnew(NULL, sizeof(int));
 	while (get_next_line(1, line))
 	{
-		if (!read_instru(lst_a, &lst_b, *line))
+		if (!read_instru(lst_a, &lst_b, *line, v_fl))
 		{
 			ft_printf("Error\n");
 			break ;
@@ -56,16 +67,14 @@ void	checker(t_list **lst_a)
 			break ;
 		free(*line);
 	}
+	if (*line && ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", *line))
+		(check_ordered(*lst_a)) ? ft_printf("OK\n") : ft_printf("KO\n");
 	ft_lstdel(&lst_b, del);
 	free(*line);
 	free(line);
-	if (check_ordered(*lst_a))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
 }
 
-int		read_instru(t_list **lst_a, t_list **lst_b, char *instruct)
+int		read_instru(t_list **lst_a, t_list **lst_b, char *instruct, int *v_fl)
 {
 	if (ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", instruct))
 	{
@@ -80,14 +89,8 @@ int		read_instru(t_list **lst_a, t_list **lst_b, char *instruct)
 		(!ft_strcmp(instruct, "rra")) ? rra(lst_a) : 0;
 		(!ft_strcmp(instruct, "rrb")) ? rrb(lst_b) : 0;
 		(!ft_strcmp(instruct, "rrr")) ? rrr(lst_a, lst_b) : 0;
-//////////
-		(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
-		ft_printf("instruction : %s\n", instruct);
-		ft_printf("--\n");
-		lst_print(*lst_a);
-		ft_printf("--\n");
-		lst_print(*lst_b);
-		ft_printf("--\n");
+		if (*v_fl)
+			verbose(lst_a, lst_b, instruct);
 	}
 	else
 		return (0);

@@ -6,27 +6,28 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/16 16:27:40 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 18:25:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		check(int ac, const char **av)
+int		check(int ac, const char **av, int *v_fl)
 {
 	int		i;
 	int		j;
 
-	i = 1;
 	j = 0;
 	if (ac <= 1)
 		return (0);
+	(!ft_strcmp(av[1], "-v")) ? (*v_fl = 1) : (*v_fl = 0);
+	i = 1 + *v_fl;
 	while (av[i])
 	{
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]) && (av[i][j] != '-' && av[i][j] != '+'))
+			if (!ft_isdigit(av[i][j]) && av[i][j] != '-' && av[i][j] != '+')
 				return (0);
 			if ((av[i][j] == '-' || av[i][j] == '+') && j != 0)
 				return (0);
@@ -72,14 +73,16 @@ int		main(int ac, const char **av)
 {
 	t_list	*lst;
 	int		*tmp;
+	int		*v_fl;
 
-	if (!check(ac, av) || (tmp = (int*)malloc(sizeof(int *))) == NULL)
+	if ((v_fl = (int*)malloc(sizeof(int *))) == NULL || !check(ac, av, v_fl) \
+			|| (tmp = (int*)malloc(sizeof(int *))) == NULL)
 		ft_printf("Error\n");
 	else
 	{
 		*tmp = ft_atoi(av[--ac]);
 		lst = ft_lstnew(tmp, sizeof(int));
-		while (--ac)
+		while (--ac > *v_fl)
 		{
 			*tmp = ft_atoi(av[ac]);
 			ft_lstaddend(&lst, ft_lstnew(tmp, sizeof(int)));
@@ -87,9 +90,10 @@ int		main(int ac, const char **av)
 		if (!check_doubles(lst))
 			ft_printf("Error\n");
 		else
-			checker(&lst);
+			checker(&lst, v_fl);
 		ft_lstdel(&lst, del);
 		free(tmp);
+		free(v_fl);
 	}
 	return (0);
 }
