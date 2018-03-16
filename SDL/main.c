@@ -1,9 +1,9 @@
-#include "/Library/Frameworks/SDL2.framework/Headers/SDL.h"
+#include "../../../Library/Frameworks/SDL2.framework/Headers/SDL.h"
 #include "../printf/srcs/ft_printf.h"
 
-int		main(int argc, char **argv)
+int		main()
 {
-	SDL_Window *window(0);
+	SDL_Window *window;
 	SDL_Event events;
 	int end;
 
