@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/16 18:33:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 20:06:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		check(int ac, const char **av, int *v_fl)
 	if (ac <= 1)
 		return (0);
 	(!ft_strcmp(av[1], "-v")) ? (*v_fl = 1) : 0;
-	(!ft_strcmp(av[1], "-v")) ? (*v_fl = 0) : 0;
+	(ft_strcmp(av[1], "-v")) ? (*v_fl = 0) : 0;
 	i = 1 + *v_fl;
 	while (av[i])
 	{
