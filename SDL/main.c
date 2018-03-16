@@ -3,16 +3,11 @@
 
 int		main(int argc, char **argv)
 {
-	SDL_Window *window;
+	SDL_Window *window(0);
 	SDL_Event events;
 	int end;
 
-	window = NULL;
 	end = 0;
-	if ((window = (SDL_Window*)malloc(sizeof(SDL_Window*))) == NULL)
-		return (-1);
-	if ((window = (SDL_Window*)malloc(sizeof(SDL_Window*))) == NULL)
-		return (-1);
 	if(SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		ft_printf("Error\n");
@@ -24,12 +19,19 @@ int		main(int argc, char **argv)
 			SDL_WINDOWPOS_UNDEFINED, \
 			800, 600, \
 			SDL_WINDOW_OPENGL);
+	if (window == 0)
+	{
+		ft_printf("Error\n");
+		SDL_Quit();
+		return (-1);
+	}
 	while(!end)
 	{
 		SDL_WaitEvent(&events);
-		if(events.type == SDL_QUIT)
+		if(events.window.event == SDL_WINDOWEVENT_CLOSE)
 			end = 1;
 	}
+	SDL_DestroyWindow(window);
 	SDL_Quit();
 	return (0);
 }
