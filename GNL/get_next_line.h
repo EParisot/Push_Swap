@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 10:57:54 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 21:56:45 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:39:05 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 3
+# define BUFF_SIZE 4
 
 # include "../libft/libft.h"
 # include <unistd.h>

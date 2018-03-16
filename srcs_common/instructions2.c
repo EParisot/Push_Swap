@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:16:28 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 20:24:12 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:25:45 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ra(t_list **lst_a)
 		while ((tmp->next)->next)
 			tmp = tmp->next;
 		ft_lstadd(lst_a, ft_lstnew((tmp->next)->content, sizeof(int)));
+		free(tmp->next->content);
+		tmp->next->content = NULL;
+		free(tmp->next);
 		tmp->next = NULL;
 	}
 	return ;
@@ -37,6 +40,9 @@ void	rb(t_list **lst_b)
 		while ((tmp->next)->next)
 			tmp = tmp->next;
 		ft_lstadd(lst_b, ft_lstnew((tmp->next)->content, sizeof(int)));
+		free(tmp->next->content);
+		tmp->next->content = NULL;
+		free(tmp->next);
 		tmp->next = NULL;
 	}
 	return ;
