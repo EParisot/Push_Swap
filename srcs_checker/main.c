@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/16 15:01:27 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:09:30 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,23 @@ int		main(int ac, const char **av)
 	int		*tmp;
 
 	if (!check(ac, av) || (tmp = (int*)malloc(sizeof(int *))) == NULL)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
-	*tmp = ft_atoi(av[--ac]);
-	lst = ft_lstnew(tmp, sizeof(int));
-	while (--ac)
-	{
-		*tmp = ft_atoi(av[ac]);
-		new = ft_lstnew(tmp, sizeof(int));
-		ft_lstaddend(&lst, new);
-	}
-	if (!check_doubles(lst))
 		ft_printf("Error\n");
 	else
-		checker(&lst);
-	ft_lstdel(&lst, del);
-	free(tmp);
+	{
+		*tmp = ft_atoi(av[--ac]);
+		lst = ft_lstnew(tmp, sizeof(int));
+		while (--ac)
+		{
+			*tmp = ft_atoi(av[ac]);
+			new = ft_lstnew(tmp, sizeof(int));
+			ft_lstaddend(&lst, new);
+		}
+		if (!check_doubles(lst))
+			ft_printf("Error\n");
+		else
+			checker(&lst);
+		ft_lstdel(&lst, del);
+		free(tmp);
+	}
 	return (0);
 }
