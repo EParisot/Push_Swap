@@ -6,14 +6,14 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/19 17:37:06 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:39:22 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "../srcs_common/common.h"
 
-void	lst_print(t_list *lst)
+static void			lst_print(t_list *lst)
 {
 	t_list *tmp;
 
@@ -26,20 +26,32 @@ void	lst_print(t_list *lst)
 	lst = tmp;
 }
 
-void	verbose(SDL_Renderer *renderer, t_list **lst_a, t_list **lst_b, \
-		char *instruct)
+static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
+		char *instruct, int *v_fl)
 {
-	/*(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
-	ft_printf("instruction : %s\n", instruct);
-	ft_printf("--\n");
-	lst_print(*lst_a);
-	ft_printf("--\n");
-	lst_print(*lst_b);
-	ft_printf("--\n");*/
+	if (DEBUG)
+	{
+		(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
+		ft_printf("instruction : %s\n", instruct);
+		ft_printf("--\n");
+		lst_print(*lst_a);
+		ft_printf("--\n");
+		lst_print(*lst_b);
+		ft_printf("--\n");
+	}
+	static SDL_Window		*window;
+	static SDL_Renderer		*renderer;
+
+	if (*v_fl && window == NULL)
+	{
+		window = w_init(window);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	}
 	w_draw(renderer, *lst_a, *lst_b, instruct);
+	return (window);
 }
 
-int		check_ordered(t_list *lst_a)
+static int			io(t_list *lst_a)
 {
 	while (lst_a->next)
 	{
@@ -50,44 +62,7 @@ int		check_ordered(t_list *lst_a)
 	return (1);
 }
 
-void	checker(t_list **lst_a, int *v_fl)
-{
-	t_list			*lst_b;
-	char			**line;
-	SDL_Window		*window;
-	SDL_Renderer	*renderer;
-
-	window = NULL;
-	if ((line = (char **)malloc(sizeof(char *))) == NULL)
-		return ;
-	lst_b = ft_lstnew(NULL, sizeof(int));
-	if (*v_fl)
-	{
-		window = w_init(window);
-		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-		verbose(renderer, lst_a, &lst_b, "");
-	}
-	while (get_next_line(1, line))
-	{
-		if (!read_instru(renderer, lst_a, &lst_b, *line, v_fl))
-		{
-			ft_printf("Error\n");
-			break ;
-		}
-		else if (!ft_strcmp(*line, ""))
-			break ;
-		free(*line);
-	}
-	if (*line && ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", *line))
-		(check_ordered(*lst_a) && lst_b->content == NULL) ? ft_printf("OK\n") \
-			: ft_printf("KO\n");
-	w_destroy(window);
-	ft_lstdel(&lst_b, del);
-	free(*line);
-	free(line);
-}
-
-int		read_instru(SDL_Renderer *renderer, t_list **lst_a, t_list **lst_b, \
+static int			read_instru(t_list **lst_a, t_list **lst_b, \
 		char *instruct, int *v_fl)
 {
 	if (ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", instruct))
@@ -104,9 +79,38 @@ int		read_instru(SDL_Renderer *renderer, t_list **lst_a, t_list **lst_b, \
 		(!ft_strcmp(instruct, "rrb")) ? rrb(lst_b) : 0;
 		(!ft_strcmp(instruct, "rrr")) ? rrr(lst_a, lst_b) : 0;
 		if (*v_fl)
-			verbose(renderer, lst_a, lst_b, instruct);
+			verbose(lst_a, lst_b, instruct, v_fl);
 	}
 	else
 		return (0);
 	return (1);
+}
+
+void				checker(t_list **lst_a, int *v_fl)
+{
+	t_list			*lst_b;
+	char			**line;
+	SDL_Window		*window;
+
+	if ((line = (char **)malloc(sizeof(char *))) == NULL)
+		return ;
+	lst_b = ft_lstnew(NULL, sizeof(int));
+	(*v_fl) ? window = verbose(lst_a, &lst_b, "", v_fl) : 0;
+	while (get_next_line(1, line))
+	{
+		if (!read_instru(lst_a, &lst_b, *line, v_fl))
+		{
+			ft_printf("Error\n");
+			break ;
+		}
+		else if (!ft_strcmp(*line, ""))
+			break ;
+		free(*line);
+	}
+	if (*line && ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", *line))
+		(io(*lst_a) && !lst_b->content) ? ft_printf("OK\n") : ft_printf("KO\n");
+	ft_lstdel(&lst_b, del);
+	w_destroy(window);
+	free(*line);
+	free(line);
 }

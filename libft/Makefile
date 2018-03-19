@@ -6,14 +6,14 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/03/19 15:05:55 by eparisot         ###   ########.fr        #
+#    Updated: 2018/03/19 19:05:43 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 
 SRCS	=	ft_atoi.c \
-			ft_atoi_int.c \
+			ft_is_int.c \
 			ft_bzero.c \
 			ft_foreach.c \
 			ft_isalnum.c \

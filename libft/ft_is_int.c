@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_int.c                                      :+:      :+:    :+:   */
+/*   ft_is_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 14:56:01 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/09 01:32:07 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:07:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
 
-int	ft_atoi_int(const char *s)
+int	ft_is_int(const char *s)
 {
 	int				i;
 	unsigned long	result;
@@ -33,9 +33,9 @@ int	ft_atoi_int(const char *s)
 		result *= 10;
 		result += s[i++] - 48;
 		if (sign < 0 && result > (unsigned long)INT_MAX + 1)
-			return (-1);
+			return (0);
 		if (sign > 0 && result > (unsigned long)INT_MAX)
-			return (-1);
+			return (0);
 	}
-	return (sign * result);
+	return (1);
 }

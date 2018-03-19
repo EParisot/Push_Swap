@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/16 20:06:40 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:07:37 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		check(int ac, const char **av, int *v_fl)
+static int		check(int ac, const char **av, int *v_fl)
 {
 	int		i;
 	int		j;
@@ -34,14 +34,14 @@ int		check(int ac, const char **av, int *v_fl)
 				return (0);
 			j++;
 		}
-		if (ft_atoi_int(av[i]) == -1)
+		if (ft_is_int(av[i]) == 0)
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int		check_doubles(t_list *lst)
+static int		check_doubles(t_list *lst)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -70,7 +70,7 @@ int		check_doubles(t_list *lst)
 	return (1);
 }
 
-int		main(int ac, const char **av)
+int				main(int ac, const char **av)
 {
 	t_list	*lst;
 	int		*tmp;

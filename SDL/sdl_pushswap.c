@@ -11,7 +11,7 @@ SDL_Window	*w_init(SDL_Window *window)
 	window = SDL_CreateWindow("PushSwap", \
 			SDL_WINDOWPOS_UNDEFINED, \
 			SDL_WINDOWPOS_UNDEFINED, \
-			800, 600, \
+			800, 800, \
 			SDL_WINDOW_SHOWN);
 	if (window == 0)
 	{
@@ -53,7 +53,7 @@ void	w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b, char *inst)
 	while (lst_a && lst_a->content)
 	{
 		r.h = -200 * (*(int*)lst_a->content) / max;
-		r.x = 780 - i * r.w + (i + 1 * 10) - r.w;
+		r.x = i * r.w + i + 10;
 		r.y = 200;
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
@@ -64,7 +64,7 @@ void	w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b, char *inst)
 	while (lst_b && lst_b->content)
 	{
 		r.h = -200 * (*(int*)lst_b->content) / max;
-		r.x = 780 - i * r.w + (i + 1 * 10) - r.w;
+		r.x = i * r.w + i + 10;
 		r.y = 600;
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
@@ -85,32 +85,4 @@ void	w_destroy(SDL_Window *window)
 {
 	SDL_DestroyWindow(window);
 	SDL_Quit();
-}
-
-int		test()
-{
-	SDL_Window		*window;
-	SDL_Renderer	*renderer;
-	SDL_Event		events;
-	int				end;
-
-	end = 0;
-	window = NULL;
-	window = w_init(window);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-
-
-
-
-
-	while (!end)
-	{
-		SDL_WaitEvent(&events);
-		if(events.window.event == SDL_WINDOWEVENT_CLOSE)
-			end = 1;
-	}
-
-	w_destroy(window);
-	return (0);
 }
