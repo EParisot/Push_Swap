@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/03/14 21:34:12 by eparisot         ###   ########.fr        #
+#    Updated: 2018/03/19 15:05:55 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS	=	ft_atoi.c \
 			ft_lstmap.c \
 			ft_lstnew.c \
 			ft_lstsort.c \
+			ft_lstmin.c \
+			ft_lstmax.c \
 			ft_memalloc.c \
 			ft_memccpy.c \
 			ft_memchr.c \

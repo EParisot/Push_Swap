@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.h                                          :+:      :+:    :+:   */
+/*   ft_lstmax.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/19 14:38:29 by eparisot         ###   ########.fr       */
+/*   Created: 2018/03/19 14:59:35 by eparisot          #+#    #+#             */
+/*   Updated: 2018/03/19 16:26:15 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_H
+#include "libft.h"
+#include <limits.h>
 
-# define CHECKER_H
+int		ft_lstmax(t_list *lst)
+{
+	int	max;
 
-# include "../libft/libft.h"
-# include "../printf/srcs/ft_printf.h"
-# include "../GNL/get_next_line.h"
-# include "../SDL/sdl_pushswap.h"
-
-void	lst_print(t_list *lst);
-void	checker(t_list **lst, int *v_fl);
-int		read_instru(SDL_Renderer *renderer, t_list **lst_a, t_list **lst_b, \
-		char *instru, int *v_fl);
-void	del(void *content, size_t content_size);
-
-#endif
+	max = INT_MIN;
+	while (lst && lst->content)
+	{
+		if (((*(int*)lst->content) > max))
+			max = (*(int*)lst->content);
+		lst = lst->next;
+	}
+	return (max);
+}

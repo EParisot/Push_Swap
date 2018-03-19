@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/29 15:01:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/14 21:34:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/19 15:23:22 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstaddend(t_list **alst, t_list *new);
 void				ft_lstsort(t_list *lst);
 size_t				ft_lstcount(t_list *lst);
+int					ft_lstmax(t_list *lst);
+int					ft_lstmin(t_list *lst);
 
 void				ft_strswap(char *s1, char *s2);
 size_t				ft_tablen(char **tab);
