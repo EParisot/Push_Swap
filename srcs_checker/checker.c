@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/19 17:12:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:37:06 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	checker(t_list **lst_a, int *v_fl)
 		free(*line);
 	}
 	if (*line && ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", *line))
-		(check_ordered(*lst_a)) ? ft_printf("OK\n") : ft_printf("KO\n");
+		(check_ordered(*lst_a) && lst_b->content == NULL) ? ft_printf("OK\n") \
+			: ft_printf("KO\n");
 	w_destroy(window);
 	ft_lstdel(&lst_b, del);
 	free(*line);

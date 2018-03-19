@@ -53,7 +53,7 @@ void	w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b, char *inst)
 	while (lst_a && lst_a->content)
 	{
 		r.h = -200 * (*(int*)lst_a->content) / max;
-		r.x = i * r.w + (i + 1 * 10);
+		r.x = 780 - i * r.w + (i + 1 * 10) - r.w;
 		r.y = 200;
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
@@ -64,7 +64,7 @@ void	w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b, char *inst)
 	while (lst_b && lst_b->content)
 	{
 		r.h = -200 * (*(int*)lst_b->content) / max;
-		r.x = i * r.w + (i + 1 * 10);
+		r.x = 780 - i * r.w + (i + 1 * 10) - r.w;
 		r.y = 600;
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
