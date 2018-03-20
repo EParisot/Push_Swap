@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/19 19:25:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:10:02 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static void			lst_print(t_list *lst)
 static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 		char *instruct, int *v_fl)
 {
+	static SDL_Window		*window;
+	static SDL_Renderer		*renderer;
+
 	if (DEBUG)
 	{
 		(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
@@ -39,9 +42,6 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 		lst_print(*lst_b);
 		ft_printf("--\n");
 	}
-	static SDL_Window		*window;
-	static SDL_Renderer		*renderer;
-
 	if (*v_fl && window == NULL)
 	{
 		window = w_init(window);

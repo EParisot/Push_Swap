@@ -55,7 +55,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		r.h = -200 * (*(int*)lst_b->content) / info_tab[7];
 		r.x = i * (1 + r.w) + 10;
 		r.y = 600;
-		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_b = lst_b->next;
 		i--;
