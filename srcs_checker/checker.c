@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 11:10:02 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 13:00:16 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,32 @@ static int			io(t_list *lst_a)
 	return (1);
 }
 
+static int			check_instru(char *instruct)
+{
+	int	check;
+
+	check = 0;
+	(!ft_strcmp(instruct, "sa")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "sb")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "ss")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "pa")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "pb")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "ra")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "rb")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "rr")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "rra")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "rrb")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "rrr")) ? check = 1 : 0;
+	(!ft_strcmp(instruct, "")) ? check = 1 : 0;
+	if (check == 1)
+		return (1);
+	return (0);
+}
+
 static int			read_instru(t_list **lst_a, t_list **lst_b, \
 		char *instruct, int *v_fl)
 {
-	if (ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", instruct))
+	if (check_instru(instruct))
 	{
 		(!ft_strcmp(instruct, "sa")) ? sa(lst_a) : 0;
 		(!ft_strcmp(instruct, "sb")) ? sb(lst_b) : 0;
@@ -107,7 +129,7 @@ void				checker(t_list **lst_a, int *v_fl)
 			break ;
 		free(*line);
 	}
-	if (*line && ft_strstr("sa-sb-ss-pa-pb-ra-rb-rr-rra-rrb-rrr", *line))
+	if (*line && check_instru(*line))
 		(io(*lst_a) && !lst_b->content) ? ft_printf("OK\n") : ft_printf("KO\n");
 	ft_lstdel(&lst_b, del);
 	w_destroy(window);
