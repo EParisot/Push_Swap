@@ -60,18 +60,15 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		lst_b = lst_b->next;
 		i--;
 	}
-	SDL_RenderPresent(renderer);
 }
 
-void			w_draw(SDL_Window *window, t_list *lst_a, t_list *lst_b)
+void			w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b)
 {
-	SDL_Rect		r;
-	static int		max;
-	static int		count;
-	int				*info_tab;
-	SDL_Renderer	*renderer;
+	SDL_Rect	r;
+	static int	max;
+	static int	count;
+	int			*info_tab;
 
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	if ((info_tab = (int*)malloc(8 * sizeof(int))) == NULL)
 		return ;
 	info_tab = info(lst_a, lst_b, info_tab);
@@ -85,8 +82,8 @@ void			w_draw(SDL_Window *window, t_list *lst_a, t_list *lst_b)
 	r.w = ((780 - count) / count) - 1;
 	w_clear(renderer);
 	draw(lst_a, lst_b, renderer, r, info_tab);
+	SDL_RenderPresent(renderer);
 	free(info_tab);
-	SDL_DestroyRenderer(renderer);
 }
 
 void			w_clear(SDL_Renderer *renderer)

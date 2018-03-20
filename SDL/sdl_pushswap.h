@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:02:34 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 15:05:06 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:14:44 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../printf/srcs/ft_printf.h"
 
 SDL_Window			*w_init(SDL_Window *window);
-void				w_draw(SDL_Window *window, t_list *lst_a, \
+void				w_draw(SDL_Renderer *renderer, t_list *lst_a, \
 		t_list *lst_b);
 void				w_clear(SDL_Renderer *renderer);
 void				w_destroy(SDL_Window *window);

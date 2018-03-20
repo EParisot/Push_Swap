@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 15:07:16 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:14:48 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 		char *instruct, int *v_fl)
 {
 	static SDL_Window		*window;
+	static SDL_Renderer		*renderer;
 
 	if (DEBUG)
 	{
@@ -42,8 +43,11 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 		ft_printf("--\n");
 	}
 	if (*v_fl && window == NULL)
+	{
 		window = w_init(window);
-	w_draw(window, *lst_a, *lst_b);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	}
+	w_draw(renderer, *lst_a, *lst_b);
 	return (window);
 }
 
