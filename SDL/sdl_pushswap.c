@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sdl_pushswap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
+/*   Updated: 2018/03/20 19:18:01 by eparisot         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "sdl_pushswap.h"
 
 SDL_Window		*w_init(SDL_Window *window)
 {
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		ft_printf("Error\n");
 		SDL_Quit();
@@ -34,12 +46,14 @@ static int		*info(t_list *lst_a, t_list *lst_b, int *info_tab)
 }
 
 static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
-			SDL_Rect r, int *info_tab)
+		int *info_tab)
 {
-	int i;
+	int			i;
+	SDL_Rect	r;
 
-	i = info_tab[6] - 1;
-	while (lst_a && lst_a->content)
+	i = info_tab[6];
+	r.w = ((780 - info_tab[6]) / info_tab[6]) - 1;
+	while (lst_a && lst_a->content && --i)
 	{
 		r.h = -200 * (*(int*)lst_a->content) / info_tab[7];
 		r.x = i * (1 + r.w) + 10;
@@ -47,10 +61,9 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_a = lst_a->next;
-		i--;
 	}
-	i = info_tab[6] - 1;
-	while (lst_b && lst_b->content)
+	i = info_tab[6];
+	while (lst_b && lst_b->content && --i)
 	{
 		r.h = -200 * (*(int*)lst_b->content) / info_tab[7];
 		r.x = i * (1 + r.w) + 10;
@@ -58,13 +71,11 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_b = lst_b->next;
-		i--;
 	}
 }
 
 void			w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b)
 {
-	SDL_Rect	r;
 	static int	max;
 	static int	count;
 	int			*info_tab;
@@ -79,9 +90,8 @@ void			w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b)
 	}
 	info_tab[6] = count;
 	info_tab[7] = max;
-	r.w = ((780 - count) / count) - 1;
 	w_clear(renderer);
-	draw(lst_a, lst_b, renderer, r, info_tab);
+	draw(lst_a, lst_b, renderer, info_tab);
 	SDL_RenderPresent(renderer);
 	free(info_tab);
 }

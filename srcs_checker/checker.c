@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 15:14:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:19:09 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void			lst_print(t_list *lst)
 static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 		char *instruct, int *v_fl)
 {
-	static SDL_Window		*window;
-	static SDL_Renderer		*renderer;
+	static SDL_Renderer	*renderer;
+	static SDL_Window	*window;
 
 	if (DEBUG)
 	{
@@ -100,7 +100,7 @@ static int			read_instru(t_list **lst_a, t_list **lst_b, \
 		(!ft_strcmp(instruct, "rra")) ? rra(lst_a) : 0;
 		(!ft_strcmp(instruct, "rrb")) ? rrb(lst_b) : 0;
 		(!ft_strcmp(instruct, "rrr")) ? rrr(lst_a, lst_b) : 0;
-		if (*v_fl)
+		if (*v_fl && check_instru(instruct) && ft_strcmp(instruct, ""))
 			verbose(lst_a, lst_b, instruct, v_fl);
 	}
 	else
@@ -114,19 +114,19 @@ void				checker(t_list **lst_a, int *v_fl)
 	char			**line;
 	SDL_Window		*window;
 
+	window = NULL;
 	if ((line = (char **)malloc(sizeof(char *))) == NULL)
 		return ;
 	lst_b = ft_lstnew(NULL, sizeof(int));
 	(*v_fl) ? window = verbose(lst_a, &lst_b, "", v_fl) : 0;
 	while (get_next_line(1, line))
 	{
-		if (!read_instru(lst_a, &lst_b, *line, v_fl))
+		if (!read_instru(lst_a, &lst_b, *line, v_fl) || !ft_strcmp(*line, ""))
 		{
-			ft_printf("Error\n");
+			if (!read_instru(lst_a, &lst_b, *line, v_fl))
+				ft_printf("Error\n");
 			break ;
 		}
-		else if (!ft_strcmp(*line, ""))
-			break ;
 		free(*line);
 	}
 	if (*line && check_instru(*line))
