@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 19:18:01 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:24:39 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 	int			i;
 	SDL_Rect	r;
 
-	i = info_tab[6];
+	i = info_tab[6] + 1;
 	r.w = ((780 - info_tab[6]) / info_tab[6]) - 1;
 	while (lst_a && lst_a->content && --i)
 	{
@@ -62,7 +62,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		SDL_RenderFillRect(renderer, &r);
 		lst_a = lst_a->next;
 	}
-	i = info_tab[6];
+	i = info_tab[6] + 1;
 	while (lst_b && lst_b->content && --i)
 	{
 		r.h = -200 * (*(int*)lst_b->content) / info_tab[7];
