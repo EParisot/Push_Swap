@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 19:40:10 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/20 21:12:20 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 	SDL_Rect	r;
 
 	i = info_tab[6] + 1;
-	r.w = (790  / i - 1);
+	r.w = (780  / (i - 1));
 	while (lst_a && lst_a->content && --i)
 	{
 		r.h = -200 * (*(int*)lst_a->content) / info_tab[7];
-		r.x = i * r.w;
+		r.x = 10 + i * r.w - r.w;
 		r.y = 200;
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
@@ -66,7 +66,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 	while (lst_b && lst_b->content && --i)
 	{
 		r.h = -200 * (*(int*)lst_b->content) / info_tab[7];
-		r.x = i * r.w;
+		r.x = 10 + i * r.w - r.w;
 		r.y = 600;
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
