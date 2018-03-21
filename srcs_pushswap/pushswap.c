@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 19:00:07 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 19:26:54 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,33 @@ static int	*info(t_list *lst_a, int *info_tab)
 	return (info_tab);
 }
 
-void		insert_sort(t_list **lst_a, t_list **lst_b, int *info_tab)
+void		select_sort(t_list **lst_a, t_list **lst_b, int *info_tab)
 {
 	t_list	*tmp_a;
 	t_list	*tmp_b;
 	int		min;
+	int		c;
 
 	tmp_a = *lst_a;
 	tmp_b = *lst_b;
 	min = info_tab[1];
-	//
-	//
-	//
-	//
+	c = 0;
+	while (tmp_a)
+	{
+		if (*((int*)tmp_a->content) <= min)
+		{
+			ft_printf("%d : %d :", min, *((int*)tmp_a->content));
+			min = *((int*)tmp_a->content);
+			while (c)
+			{
+				ra(lst_a);
+				ft_printf("ra\n");
+				c--;
+			}
+		}
+		tmp_a = tmp_a->next;
+		c++;
+	}
 }
 
 void		pushswap(t_list **lst_a)
@@ -58,7 +72,7 @@ void		pushswap(t_list **lst_a)
 	info_tab = info(*lst_a, info_tab);
 	while (!io(*lst_a))
 	{
-		insert_sort(lst_a, &lst_b, info_tab);
+		select_sort(lst_a, &lst_b, info_tab);
 	}
 	ft_lstdel(&lst_b, del);
 }
