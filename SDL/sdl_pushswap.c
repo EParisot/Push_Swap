@@ -6,33 +6,11 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/20 21:12:20 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 12:16:25 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sdl_pushswap.h"
-
-SDL_Window		*w_init(SDL_Window *window)
-{
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		ft_printf("Error\n");
-		SDL_Quit();
-		return (NULL);
-	}
-	window = SDL_CreateWindow("PushSwap", \
-			SDL_WINDOWPOS_UNDEFINED, \
-			SDL_WINDOWPOS_UNDEFINED, \
-			800, 800, \
-			SDL_WINDOW_SHOWN);
-	if (window == 0)
-	{
-		ft_printf("Error\n");
-		SDL_Quit();
-		return (NULL);
-	}
-	return (window);
-}
 
 static int		*info(t_list *lst_a, t_list *lst_b, int *info_tab)
 {
@@ -52,13 +30,13 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 	SDL_Rect	r;
 
 	i = info_tab[6] + 1;
-	r.w = (780  / (i - 1));
+	r.w = (1580  / (i - 1));
 	while (lst_a && lst_a->content && --i)
 	{
 		r.h = -200 * (*(int*)lst_a->content) / info_tab[7];
 		r.x = 10 + i * r.w - r.w;
 		r.y = 200;
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 200, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_a = lst_a->next;
 	}
@@ -68,7 +46,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		r.h = -200 * (*(int*)lst_b->content) / info_tab[7];
 		r.x = 10 + i * r.w - r.w;
 		r.y = 600;
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_b = lst_b->next;
 	}
@@ -105,6 +83,7 @@ void			w_clear(SDL_Renderer *renderer)
 
 void			w_destroy(SDL_Window *window)
 {
+	SDL_DestroyRenderer(SDL_GetRenderer(window));
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
