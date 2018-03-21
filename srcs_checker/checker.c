@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 12:24:25 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 15:16:55 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,26 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 	static SDL_Renderer	*renderer;
 	static SDL_Window	*window;
 
-	if (DEBUG)
+	if (ft_lstcount(*lst_a) + ft_lstcount(*lst_b) < 1900)
 	{
-		(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
-		ft_printf("instruction : %s\n", instruct);
-		lst_print(*lst_a);
-		lst_print(*lst_b);
-	}
-	if (*v_fl && window == NULL)
-	{
-		if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+		if (*v_fl && window == NULL)
 		{
-			ft_printf("Error\n");
-			return (NULL);
+			if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+			{
+				ft_printf("Error\n");
+				return (NULL);
+			}
+			SDL_CreateWindowAndRenderer(1920, 800, 0, &window, &renderer);
+			if (!window || !renderer)
+			{
+				ft_printf("Error\n");
+				SDL_Quit();
+				return (NULL);
+			}
 		}
-		SDL_CreateWindowAndRenderer(1920, 800, 0, &window, &renderer);
-		if (!window || !renderer)
-		{
-			ft_printf("Error\n");
-			SDL_Quit();
-			return (NULL);
-		}
+		w_clear(renderer);
+		w_draw(renderer, *lst_a, *lst_b);
 	}
-	w_clear(renderer);
-	w_draw(renderer, *lst_a, *lst_b);
 	return (window);
 }
 

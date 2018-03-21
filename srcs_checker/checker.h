@@ -6,14 +6,14 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 12:09:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:29:12 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 
 # define CHECKER_H
-# define DEBUG 1
+# define DEBUG 0
 
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
