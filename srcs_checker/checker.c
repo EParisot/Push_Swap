@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 12:20:13 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 12:24:25 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 			ft_printf("Error\n");
 			return (NULL);
 		}
-		SDL_CreateWindowAndRenderer(1600, 800, 0, &window, &renderer);
+		SDL_CreateWindowAndRenderer(1920, 800, 0, &window, &renderer);
 		if (!window || !renderer)
 		{
 			ft_printf("Error\n");
