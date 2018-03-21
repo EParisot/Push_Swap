@@ -6,13 +6,13 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 15:21:25 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 16:34:51 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-static int		check(int ac, const char **av, int *v_fl)
+static int	check(int ac, const char **av, int *v_fl)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ static int		check(int ac, const char **av, int *v_fl)
 	return (1);
 }
 
-static int		check_doubles(t_list *lst)
+static int	check_doubles(t_list *lst)
 {
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -70,7 +70,7 @@ static int		check_doubles(t_list *lst)
 	return (1);
 }
 
-int				main(int ac, const char **av)
+int			main(int ac, const char **av)
 {
 	t_list	*lst;
 	int		*tmp;
@@ -91,7 +91,7 @@ int				main(int ac, const char **av)
 		if (!check_doubles(lst))
 			ft_printf("Error\n");
 		else
-			pushswap(&lst, v_fl);
+			pushswap(&lst);
 		ft_lstdel(&lst, del);
 		free(tmp);
 		free(v_fl);
