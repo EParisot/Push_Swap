@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 12:18:42 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/21 12:20:13 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,8 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 	{
 		(!ft_strcmp(instruct, "")) ? instruct = "End" : 0;
 		ft_printf("instruction : %s\n", instruct);
-		ft_printf("\n");
 		lst_print(*lst_a);
-		ft_printf("\n");
 		lst_print(*lst_b);
-		ft_printf("\n");
 	}
 	if (*v_fl && window == NULL)
 	{
