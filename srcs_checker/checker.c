@@ -6,29 +6,14 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 15:25:55 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/22 11:45:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "../srcs_common/common.h"
 
-static void			lst_print(t_list *lst)
-{
-	t_list *tmp;
-
-	tmp = lst;
-	while (lst && (int*)lst->content != NULL)
-	{
-		ft_printf(" %d", *((int*)lst->content));
-		lst = lst->next;
-	}
-	ft_printf("\n");
-	lst = tmp;
-}
-
-static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
-		char *instruct, int *v_fl)
+static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, int *v_fl)
 {
 	static SDL_Renderer	*renderer;
 	static SDL_Window	*window;
@@ -50,8 +35,9 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, \
 				return (NULL);
 			}
 		}
-		w_clear(renderer);
+		//w_clear(renderer);
 		w_draw(renderer, *lst_a, *lst_b);
+		SDL_Delay(LATENCY);
 	}
 	return (window);
 }
@@ -106,7 +92,7 @@ static int			read_instru(t_list **lst_a, t_list **lst_b, \
 		(!ft_strcmp(instruct, "rrb")) ? rrb(lst_b) : 0;
 		(!ft_strcmp(instruct, "rrr")) ? rrr(lst_a, lst_b) : 0;
 		if (*v_fl && check_instru(instruct) && ft_strcmp(instruct, ""))
-			verbose(lst_a, lst_b, instruct, v_fl);
+			verbose(lst_a, lst_b, v_fl);
 	}
 	else
 		return (0);
@@ -124,8 +110,8 @@ void				checker(t_list **lst_a, int *v_fl)
 		return ;
 
 	lst_b = ft_lstnew(NULL, sizeof(int));
-	(*v_fl) ? window = verbose(lst_a, &lst_b, "", v_fl) : 0;
-	while (get_next_line(1, line))
+	(*v_fl) ? window = verbose(lst_a, &lst_b, v_fl) : 0;
+	while (get_next_line(0, line))
 	{
 		if (!read_instru(lst_a, &lst_b, *line, v_fl) || !ft_strcmp(*line, ""))
 		{
