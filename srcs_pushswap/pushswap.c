@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/22 16:13:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/22 21:37:17 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	io(t_list *lst_a)
 	return (1);
 }
 
-int			isinhalf(t_list *lst, int nb)
+static int	isinhalf(t_list *lst, int nb)
 {
 	int		i;
 	int		c;
@@ -41,19 +41,19 @@ int			isinhalf(t_list *lst, int nb)
 	return (0);
 }
 
-int			lastval(t_list *lst)
+static int	lastval(t_list *lst)
 {
 	while (lst->next)
 		lst = lst->next;
 	return (*((int*)lst->content));
 }
 
-void		select_sort(t_list **lst_a, t_list **lst_b)
+static void	select_sort(t_list **lst_a, t_list **lst_b)
 {
 	int		min;
 
 	min = ft_lstmin(*lst_a);
-	while ((*lst_a)->content && *((int*)(*lst_a)->content))
+	while ((*lst_a)->content != NULL)
 	{
 		if (lastval(*lst_a) <= min)
 		{
@@ -71,8 +71,6 @@ void		select_sort(t_list **lst_a, t_list **lst_b)
 			ra(lst_a);
 			ft_printf("ra\n");
 		}
-		if (io(*lst_a) && !(*lst_b)->content)
-			break;
 	}
 }
 
@@ -81,10 +79,10 @@ void		pushswap(t_list **lst_a)
 	t_list	*lst_b;
 
 	lst_b = ft_lstnew(NULL, sizeof(int));
-	while (!io(*lst_a))
+	while (!io(*lst_a) || lst_b->content)
 	{
 		select_sort(lst_a, &lst_b);
-		while (lst_b->content && *((int*)lst_b->content))
+		while (lst_b->content)
 		{
 			pa(*lst_a, lst_b);
 			ft_printf("pa\n");
