@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/22 13:48:17 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/22 21:44:58 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void				checker(t_list **lst_a, int *v_fl)
 	window = NULL;
 	if ((line = (char **)malloc(sizeof(char *))) == NULL)
 		return ;
-
 	lst_b = ft_lstnew(NULL, sizeof(int));
 	(*v_fl) ? window = verbose(lst_a, &lst_b, v_fl) : 0;
 	while (get_next_line(0, line))
