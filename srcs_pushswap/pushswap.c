@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/22 21:37:17 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/22 21:42:09 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ static void	select_sort(t_list **lst_a, t_list **lst_b)
 			ra(lst_a);
 			ft_printf("ra\n");
 		}
+		if (io(*lst_a) && (*lst_b)->content == NULL)
+		break;
 	}
+
 }
 
 void		pushswap(t_list **lst_a)
