@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/23 00:20:30 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/23 19:38:28 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		r.h = -200 * (*(int*)lst_a->content) / info_tab[7];
 		r.x = 10 + i * r.w - r.w;
 		r.y = 200;
-		SDL_SetRenderDrawColor(renderer, 0, 200, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 81, 96, 115, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_a = lst_a->next;
 	}
@@ -46,7 +46,7 @@ static void		draw(t_list *lst_a, t_list *lst_b, SDL_Renderer *renderer, \
 		r.h = -200 * (*(int*)lst_b->content) / info_tab[7];
 		r.x = 10 + i * r.w - r.w;
 		r.y = 600;
-		SDL_SetRenderDrawColor(renderer, 200, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 166, 144, 118, 255);
 		SDL_RenderFillRect(renderer, &r);
 		lst_b = lst_b->next;
 	}
@@ -68,7 +68,6 @@ void			w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b)
 	}
 	info_tab[6] = count;
 	info_tab[7] = max;
-	//w_clear(renderer);
 	draw(lst_a, lst_b, renderer, info_tab);
 	SDL_RenderPresent(renderer);
 	free(info_tab);
@@ -76,7 +75,7 @@ void			w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b)
 
 void			w_clear(SDL_Renderer *renderer)
 {
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(renderer, 242, 241, 223, 255);
 	SDL_RenderClear(renderer);
 }
 
