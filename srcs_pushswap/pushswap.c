@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/22 21:43:46 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/23 01:50:45 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ static int	isinhalf(t_list *lst, int nb)
 	{
 		if (*((int*)lst->content) == nb)
 			return (1);
+		lst = lst->next;
 		i++;
 	}
+
 	return (0);
 }
 
@@ -61,7 +63,7 @@ static void	select_sort(t_list **lst_a, t_list **lst_b)
 			ft_printf("pb\n");
 			min = ft_lstmin(*lst_a);
 		}
-		if (isinhalf(*lst_a, min))
+		else if (isinhalf(*lst_a, min))
 		{
 			rra(lst_a);
 			ft_printf("rra\n");
@@ -71,8 +73,8 @@ static void	select_sort(t_list **lst_a, t_list **lst_b)
 			ra(lst_a);
 			ft_printf("ra\n");
 		}
-		if (io(*lst_a) && (*lst_b)->content == NULL)
-		break;
+		if (io(*lst_a))
+			break;
 	}
 }
 
