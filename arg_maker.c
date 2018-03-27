@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 14:07:21 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 14:59:04 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/27 13:07:41 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		main(int ac, char **av)
 			}
 		}
 		else
-			ft_printf("Error : nb should be smaller than max - min\n");
+			ft_printf("Error : nb should be smaller than max - min - 1\n");
 	}
 	else
 		ft_printf("usage : ./arg_maker <min> <max> <nb>\n");
