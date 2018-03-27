@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/27 23:51:59 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/28 01:22:27 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ static int	iro(t_list *lst_a)
 	}
 	return (1);
 }
+
+static int	blastval(t_list *lst)
+{
+	while (lst->next->next)
+		lst = lst->next;
+	return (*((int*)lst->content));
+}
 */
 static int	lastval(t_list *lst)
 {
@@ -46,26 +53,29 @@ static int	isinhalf(t_list *lst, int nb)
 {
 	int		i;
 	int		c;
+	int		k;
 
 	i = 0;
+	k = 0;
 	c = ft_lstcount(lst);
 	while (lst->content && i <= c / 2)
 	{
 		if (*((int*)lst->content) == nb)
-			return (1);
+			return (i);
 		lst = lst->next;
 		i++;
 	}
-	return (0);
-}
-/*
-static int	blastval(t_list *lst)
-{
-	while (lst->next->next)
+	k = i;
+	while (lst)
+	{
+		if (*((int*)lst->content) == nb)
+			return (k - c);
 		lst = lst->next;
-	return (*((int*)lst->content));
+		k++;
+	}
+	return (k - c);
 }
-*/
+
 static void	select_sort(t_list **lst_a, t_list **lst_b)
 {
 	int		min;
@@ -95,15 +105,64 @@ static void	select_sort(t_list **lst_a, t_list **lst_b)
 			min = ft_lstmin(*lst_a);
 			max = ft_lstmax(*lst_a);
 		}
-		else if (isinhalf(*lst_a, min))
+		else if (*((int*)(*lst_a)->content) == min || \
+		*((int*)(*lst_a)->content) == max)
+		{
+			if (*((int*)(*lst_a)->content) == max)
+			{
+				rra(lst_a);
+				ft_printf("rra\n");
+				pb(*lst_a, *lst_b);
+				ft_printf("pb\n");
+				rb(lst_b);
+				ft_printf("rb\n");
+				i++;
+			}
+			else if (*((int*)(*lst_a)->content) == min)
+			{
+				rra(lst_a);
+				ft_printf("rra\n");
+				pb(*lst_a, *lst_b);
+				ft_printf("pb\n");
+			}
+			min = ft_lstmin(*lst_a);
+			max = ft_lstmax(*lst_a);
+		}
+		else if (isinhalf(*lst_a, min) > 0 && isinhalf(*lst_a, max) > 0)
 		{
 			rra(lst_a);
 			ft_printf("rra\n");
 		}
-		else
+		else if (isinhalf(*lst_a, min) < 0 && isinhalf(*lst_a, max) < 0)
 		{
 			ra(lst_a);
 			ft_printf("ra\n");
+		}
+		else if (isinhalf(*lst_a, min) > 0 && isinhalf(*lst_a, max) < 0)
+		{
+			if (isinhalf(*lst_a, min) < -1 * isinhalf(*lst_a, max))
+			{
+				rra(lst_a);
+				ft_printf("rra\n");
+			}
+			else
+			{
+				ra(lst_a);
+				ft_printf("ra\n");
+			}
+		}
+		else if (isinhalf(*lst_a, min) < 0 && isinhalf(*lst_a, max) > 0)
+		{
+			if (isinhalf(*lst_a, min) * -1 < isinhalf(*lst_a, max))
+			{
+				ra(lst_a);
+				ft_printf("ra\n");
+			}
+			else
+			{
+				rra(lst_a);
+				ft_printf("rra\n");
+			}
 		}
 	}
 	if (isinhalf(*lst_b, ft_lstmax(*lst_b)))
