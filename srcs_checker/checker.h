@@ -6,14 +6,14 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/23 01:10:09 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/27 22:34:28 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 
 # define CHECKER_H
-# define LATENCY 50
+# define LATENCY 0
 
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
