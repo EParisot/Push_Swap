@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/28 22:42:00 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/28 23:57:19 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,19 +187,32 @@ static void	select_sort(t_list **lst_a, t_list **lst_b)
 }
 */
 
+static int	gotneg(t_list *lst)
+{
+	while (lst)
+	{
+		if (*((int*)lst->content) < 0)
+			return (1);
+		lst = lst->next;
+	}
+	return (0);
+}
+
 static void	sort(t_list **lst_a, t_list **lst_b)
 {
 	int		min;
 	int		max;
 	int		med;
 	int		c;
+	int		neg;
 
 	med = 0;
-	while (ft_lstcount(*lst_a) > 1)
+	neg = gotneg(*lst_a);
+	while ((int*)(*lst_a)->content)
 	{
 		min = ft_lstmin(*lst_a);
 		max = ft_lstmax(*lst_a);
-		med += min + ((max - min) / 2);
+		med = (neg * min) + ((max - min) / 2);
 		c = ft_lstcount(*lst_a);
 		while (c)
 		{

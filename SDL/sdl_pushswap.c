@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 18:54:30 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/23 19:38:28 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/28 10:38:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void			w_draw(SDL_Renderer *renderer, t_list *lst_a, t_list *lst_b)
 	}
 	info_tab[6] = count;
 	info_tab[7] = max;
+	w_clear(renderer);
 	draw(lst_a, lst_b, renderer, info_tab);
 	SDL_RenderPresent(renderer);
 	free(info_tab);
