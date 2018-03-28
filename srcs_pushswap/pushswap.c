@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/28 01:22:27 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/28 22:42:00 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	lastval(t_list *lst)
 		lst = lst->next;
 	return (*((int*)lst->content));
 }
-
+/*
 static int	isinhalf(t_list *lst, int nb)
 {
 	int		i;
@@ -185,13 +185,42 @@ static void	select_sort(t_list **lst_a, t_list **lst_b)
 		ft_printf("pa\n");
 	}
 }
+*/
+
+static void	sort(t_list **lst_a, t_list **lst_b)
+{
+	int		min;
+	int		max;
+	int		med;
+	int		c;
+
+	med = 0;
+	while (ft_lstcount(*lst_a) > 1)
+	{
+		min = ft_lstmin(*lst_a);
+		max = ft_lstmax(*lst_a);
+		med += min + ((max - min) / 2);
+		c = ft_lstcount(*lst_a);
+		while (c)
+		{
+			if (lastval(*lst_a) <= med)
+			{
+				pb(*lst_a, *lst_b);
+				ft_printf("pb\n");
+			}
+			rra(lst_a);
+			ft_printf("rra\n");
+			c--;
+		}
+	}
+}
 
 void		pushswap(t_list **lst_a)
 {
 	t_list	*lst_b;
 
 	lst_b = ft_lstnew(NULL, sizeof(int));
-	select_sort(lst_a, &lst_b);
+	sort(lst_a, &lst_b);
 	ft_printf("\n");
 	ft_lstdel(&lst_b, del);
 }
