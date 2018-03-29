@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/28 10:42:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/29 10:19:26 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, int *v_fl)
 {
-	static SDL_Renderer	*renderer;
+	static SDL_Renderer	*render;
 	static SDL_Window	*window;
 
 	if (ft_lstcount(*lst_a) + ft_lstcount(*lst_b) < 1900)
@@ -27,15 +27,16 @@ static SDL_Window	*verbose(t_list **lst_a, t_list **lst_b, int *v_fl)
 				ft_printf("Error\n");
 				return (NULL);
 			}
-			SDL_CreateWindowAndRenderer(1920, 800, 0, &window, &renderer);
-			if (!window || !renderer)
+			window = SDL_CreateWindow("PushSwap", 0, 0, 1920, 800, 0);
+			render = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC);
+			if (!window || !render)
 			{
 				ft_printf("Error\n");
 				SDL_Quit();
 				return (NULL);
 			}
 		}
-		w_draw(renderer, *lst_a, *lst_b);
+		w_draw(render, *lst_a, *lst_b);
 		SDL_Delay(LATENCY);
 	}
 	return (window);
