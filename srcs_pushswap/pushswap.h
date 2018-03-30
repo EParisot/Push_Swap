@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/30 19:12:22 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/30 20:34:22 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ int		lastval(t_list *lst);
 int		blastval(t_list *lst);
 int		isinhalf(t_list *lst, int nb);
 int		hmb(t_list *lst, int nb);
+void	split1(t_list **lst_a, t_list **lst_b, int med);
+void	sort1(t_list **lst_a, t_list **lst_b, int med);
+int		split2(t_list **lst_a, t_list **lst_b);
+int		split2bis(t_list **lst_a, t_list **lst_b, int max);
+void	merge2(t_list **lst_a, t_list **lst_b, int med);
 
 #endif
