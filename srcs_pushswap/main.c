@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 16:34:51 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/30 19:12:05 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ static int	check_doubles(t_list *lst)
 	}
 	lst = tmp;
 	return (1);
+}
+
+static void	pushswap(t_list **lst_a)
+{
+	t_list *lst_b;
+
+	lst_b = ft_lstnew(NULL, sizeof(int));
+	if (ft_lstcount(*lst_a) <= 3)
+		very_small_sort(lst_a);
+	else if (ft_lstcount(*lst_a) <= 5)
+		small_sort(lst_a, &lst_b);
+	else
+		sort(lst_a, &lst_b);
+	ft_printf("\n");
+	ft_lstdel(&lst_b, del);
 }
 
 int			main(int ac, const char **av)
