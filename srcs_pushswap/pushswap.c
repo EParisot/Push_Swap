@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/30 16:32:53 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/30 17:55:05 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,11 @@ static void	sort(t_list **lst_a, t_list **lst_b)
 				ft_printf("pb\n");
 				c--;
 			}
-			rra(lst_a);
-			ft_printf("rra\n");
+			else
+			{
+				rra(lst_a);
+				ft_printf("rra\n");
+			}
 		}
 	}
 	min = ft_lstmin(*lst_b);
@@ -143,7 +146,7 @@ static void	sort(t_list **lst_a, t_list **lst_b)
 	min = ft_lstmin(*lst_b);
 	med = min + ((ft_lstmax(*lst_b) - min) / 2);
 	c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
-	max = c;
+	max = 0;
 	while (c && !iro(*lst_b))
 	{
 		if (lastval(*lst_b) >= med)
@@ -151,14 +154,40 @@ static void	sort(t_list **lst_a, t_list **lst_b)
 			pa(*lst_a, *lst_b);
 			ft_printf("pa\n");
 			c--;
+			max++;
 		}
-		rrb(lst_b);
-		ft_printf("rrb\n");
+		else
+		{
+			rrb(lst_b);
+			ft_printf("rrb\n");
+		}
+	}
+	med = min + ((ft_lstmax(*lst_b) - min) / 2);
+	c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
+	while (c && !iro(*lst_b))
+	{
+		if (lastval(*lst_b) >= med)
+		{
+			pa(*lst_a, *lst_b);
+			ft_printf("pa\n");
+			c--;
+			max++;
+		}
+		else
+		{
+			rrb(lst_b);
+			ft_printf("rrb\n");
+		}
 	}
 	while (max)
 	{
 		pb(*lst_a, *lst_b);
 		ft_printf("pb\n");
+		if (lastval(*lst_b) < blastval(*lst_b))
+		{
+			sb(lst_b);
+			ft_printf("sb\n");
+		}
 		max--;
 	}
 	min = ft_lstmin(*lst_b);
@@ -187,20 +216,48 @@ static void	sort(t_list **lst_a, t_list **lst_b)
 	}
 }
 
-static void		very_small_sort(t_list **lst_a)
+static void		small_sort(t_list **lst_a, t_list **lst_b)
 {
-	while (!io(*lst_a))
+	int		c;
+	int		min;
+	int		max;
+	int		med;
+
+	min = ft_lstmin(*lst_a);
+	max = ft_lstmax(*lst_a);
+	med = min + ((max - min) / 2);
+	c = hmb(*lst_a, med);
+	while (c && !io(*lst_a))
 	{
-		if (lastval(*lst_a) > blastval(*lst_a))
+		if (lastval(*lst_a) == min)
 		{
-			sa(lst_a);
-			ft_printf("sa\n");
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			min = ft_lstmin(*lst_a);
+			c--;
 		}
-		else
+		else if (isinhalf(*lst_a, min) >= 0)
 		{
 			rra(lst_a);
 			ft_printf("rra\n");
 		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+	}
+	if (lastval(*lst_a) > blastval(*lst_a))
+	{
+		sa(lst_a);
+		ft_printf("sa\n");
+	}
+	c = ft_lstcount(*lst_b);
+	while (c)
+	{
+		pa(*lst_a, *lst_b);
+		ft_printf("pa\n");
+		c--;
 	}
 }
 
@@ -209,8 +266,8 @@ void		pushswap(t_list **lst_a)
 	t_list	*lst_b;
 
 	lst_b = ft_lstnew(NULL, sizeof(int));
-	if (ft_lstcount(*lst_a) < 5)
-		very_small_sort(lst_a);
+	if (ft_lstcount(*lst_a) <= 5)
+		small_sort(lst_a, &lst_b);
 	else
 		sort(lst_a, &lst_b);
 	ft_printf("\n");
