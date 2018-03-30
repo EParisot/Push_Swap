@@ -6,16 +6,16 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/29 15:48:09 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/30 16:32:53 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 #include "../srcs_common/common.h"
-/*
+
 static int	io(t_list *lst)
 {
-	while (lst)
+	while (lst->next)
 	{
 		if (*((int*)lst->next->content) > *((int*)lst->content))
 			return (0);
@@ -23,21 +23,32 @@ static int	io(t_list *lst)
 	}
 	return (1);
 }
-*/
+
+static int	iro(t_list *lst)
+{
+	while (lst->next)
+	{
+		if (*((int*)lst->next->content) < *((int*)lst->content))
+			return (0);
+		lst = lst->next;
+	}
+	return (1);
+}
+
 static int	lastval(t_list *lst)
 {
 	while (lst->next)
 		lst = lst->next;
 	return (*((int*)lst->content));
 }
-/*
+
 static int	blastval(t_list *lst)
 {
 	while (lst->next->next)
 		lst = lst->next;
 	return (*((int*)lst->content));
 }
-*/
+
 static int	isinhalf(t_list *lst, int nb)
 {
 	int		i;
@@ -133,7 +144,7 @@ static void	sort(t_list **lst_a, t_list **lst_b)
 	med = min + ((ft_lstmax(*lst_b) - min) / 2);
 	c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
 	max = c;
-	while (c)
+	while (c && !iro(*lst_b))
 	{
 		if (lastval(*lst_b) >= med)
 		{
@@ -176,12 +187,32 @@ static void	sort(t_list **lst_a, t_list **lst_b)
 	}
 }
 
+static void		very_small_sort(t_list **lst_a)
+{
+	while (!io(*lst_a))
+	{
+		if (lastval(*lst_a) > blastval(*lst_a))
+		{
+			sa(lst_a);
+			ft_printf("sa\n");
+		}
+		else
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+	}
+}
+
 void		pushswap(t_list **lst_a)
 {
 	t_list	*lst_b;
 
 	lst_b = ft_lstnew(NULL, sizeof(int));
-	sort(lst_a, &lst_b);
+	if (ft_lstcount(*lst_a) < 5)
+		very_small_sort(lst_a);
+	else
+		sort(lst_a, &lst_b);
 	ft_printf("\n");
 	ft_lstdel(&lst_b, del);
 }
