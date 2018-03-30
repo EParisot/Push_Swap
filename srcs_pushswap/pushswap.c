@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/30 17:55:05 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/30 18:45:56 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,12 +261,59 @@ static void		small_sort(t_list **lst_a, t_list **lst_b)
 	}
 }
 
+static void	very_small_sort(t_list **lst_a)
+{
+	int		max;
+	int		min;
+
+	if (!io(*lst_a))
+	{
+		max = ft_lstmax(*lst_a);
+		min = ft_lstmin(*lst_a);
+		if (lastval(*lst_a) == max)
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+			if (lastval(*lst_a) > blastval(*lst_a))
+			{
+				sa(lst_a);
+				ft_printf("sa\n");
+			}
+		}
+		else if (lastval(*lst_a) != min)
+		{
+			if (*((int*)(*lst_a)->content) == min)
+			{
+				rra(lst_a);
+				ft_printf("rra\n");
+			}
+			else
+			{
+				sa(lst_a);
+				ft_printf("sa\n");
+			}
+		}
+		else
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+			if (lastval(*lst_a) > blastval(*lst_a))
+			{
+				sa(lst_a);
+				ft_printf("sa\n");
+			}
+		}
+	}
+}
+
 void		pushswap(t_list **lst_a)
 {
 	t_list	*lst_b;
 
 	lst_b = ft_lstnew(NULL, sizeof(int));
-	if (ft_lstcount(*lst_a) <= 5)
+	if (ft_lstcount(*lst_a) <= 3)
+		very_small_sort(lst_a);
+	else if (ft_lstcount(*lst_a) <= 5)
 		small_sort(lst_a, &lst_b);
 	else
 		sort(lst_a, &lst_b);
