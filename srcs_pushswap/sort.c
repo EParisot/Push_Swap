@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_tools.c                                       :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/31 20:01:28 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/31 20:27:33 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 #include "../srcs_common/common.h"
 
-void	split1(t_list **lst_a, t_list **lst_b, int med)
+static void	split1(t_list **lst_a, t_list **lst_b, int med)
 {
-	int		min;
-	int		max;
 	int		c;
 
 	while (!io(*lst_a))
 	{
-		min = ft_lstmin(*lst_a);
-		max = ft_lstmax(*lst_a);
-		med = min + ((max - min) / 2);
+		med = ft_lstmin(*lst_a) + ((ft_lstmax(*lst_a) - ft_lstmin(*lst_a)) / 2);
 		c = hmb(*lst_a, med);
 		while (c)
 			if (lastval(*lst_a) <= med)
@@ -32,15 +28,20 @@ void	split1(t_list **lst_a, t_list **lst_b, int med)
 				ft_printf("pb\n");
 				c--;
 			}
-			else
+			else if (isinhalf(*lst_a, ft_lstmin(*lst_a)) >= 0)
 			{
 				rra(lst_a);
 				ft_printf("rra\n");
 			}
+			else
+			{
+				ra(lst_a);
+				ft_printf("ra\n");
+			}
 	}
 }
 
-void	sort1(t_list **lst_a, t_list **lst_b, int med)
+static void	sort1(t_list **lst_a, t_list **lst_b, int med)
 {
 	int		max;
 	int		c;
@@ -68,11 +69,11 @@ void	sort1(t_list **lst_a, t_list **lst_b, int med)
 		}
 }
 
-int		split2(t_list **lst_a, t_list **lst_b, int max)
+static int	split2(t_list **lst_a, t_list **lst_b, int max)
 {
 	int		min;
-	int		c;
 	int		med;
+	int		c;
 
 	while (!iro(*lst_b))
 	{
@@ -87,16 +88,21 @@ int		split2(t_list **lst_a, t_list **lst_b, int max)
 				c--;
 				max++;
 			}
-			else
+			else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
 			{
 				rrb(lst_b);
 				ft_printf("rrb\n");
+			}
+			else
+			{
+				rb(lst_b);
+				ft_printf("rb\n");
 			}
 	}
 	return (max);
 }
 
-void	merge2(t_list **lst_a, t_list **lst_b, int med)
+static void	sort2(t_list **lst_a, t_list **lst_b, int med)
 {
 	int		max;
 	int		c;
@@ -124,7 +130,7 @@ void	merge2(t_list **lst_a, t_list **lst_b, int med)
 		}
 }
 
-void	sort(t_list **lst_a, t_list **lst_b)
+void		sort(t_list **lst_a, t_list **lst_b)
 {
 	int		max;
 
@@ -135,12 +141,7 @@ void	sort(t_list **lst_a, t_list **lst_b)
 	{
 		pb(*lst_a, *lst_b);
 		ft_printf("pb\n");
-		if (lastval(*lst_b) < blastval(*lst_b))
-		{
-			sb(lst_b);
-			ft_printf("sb\n");
-		}
 		max--;
 	}
-	merge2(lst_a, lst_b, 0);
+	sort2(lst_a, lst_b, 0);
 }
