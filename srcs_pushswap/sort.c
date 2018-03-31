@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/31 20:27:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/03/31 21:03:58 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,20 @@ static void	sort1(t_list **lst_a, t_list **lst_b, int med)
 		}
 }
 
-static int	split2(t_list **lst_a, t_list **lst_b, int max)
+static int	split2(t_list **lst_a, t_list **lst_b, int max, int c)
 {
-	int		min;
-	int		med;
-	int		c;
-
 	while (!iro(*lst_b))
 	{
-		min = ft_lstmin(*lst_b);
-		med = min + ((ft_lstmax(*lst_b) - min) / 2);
-		c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
+		c = ft_lstcount(*lst_b) - hmb(*lst_b, \
+		ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2));
 		while (c && !iro(*lst_b))
-			if (lastval(*lst_b) >= med)
+			if (lastval(*lst_b) >= \
+			ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2))
 			{
 				pa(*lst_a, *lst_b);
 				ft_printf("pa\n");
-				c--;
 				max++;
+				c--;
 			}
 			else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
 			{
@@ -136,7 +132,7 @@ void		sort(t_list **lst_a, t_list **lst_b)
 
 	split1(lst_a, lst_b, 0);
 	sort1(lst_a, lst_b, 0);
-	max = split2(lst_a, lst_b, 0);
+	max = split2(lst_a, lst_b, 0, 0);
 	while (max)
 	{
 		pb(*lst_a, *lst_b);
