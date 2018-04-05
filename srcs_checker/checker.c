@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/29 10:19:26 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 14:46:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static int			check_instru(char *instruct)
 	(!ft_strcmp(instruct, "rrb")) ? check = 1 : 0;
 	(!ft_strcmp(instruct, "rrr")) ? check = 1 : 0;
 	(!ft_strcmp(instruct, "")) ? check = 1 : 0;
+	(*instruct == EOF) ? check = 1 : 0;
 	if (check == 1)
 		return (1);
 	return (0);
@@ -113,14 +114,12 @@ void				checker(t_list **lst_a, int *v_fl)
 	while (get_next_line(0, line))
 	{
 		if (!read_instru(lst_a, &lst_b, *line, v_fl) || !ft_strcmp(*line, ""))
-		{
-			if (!read_instru(lst_a, &lst_b, *line, v_fl))
-				ft_printf("Error\n");
 			break ;
-		}
 		free(*line);
 	}
-	if (*line && check_instru(*line))
+	if (*line && !read_instru(lst_a, &lst_b, *line, v_fl))
+		ft_printf("Error\n");
+	else if (!*line || (*line && check_instru(*line)))
 		(io(*lst_a) && !lst_b->content) ? ft_printf("OK\n") : ft_printf("KO\n");
 	ft_lstdel(&lst_b, del);
 	w_destroy(window);

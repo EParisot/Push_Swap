@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/19 19:07:37 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 13:44:35 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ static int		check(int ac, const char **av, int *v_fl)
 	int		j;
 
 	j = 0;
-	if (ac <= 1)
-		return (0);
-	(!ft_strcmp(av[1], "-v")) ? (*v_fl = 1) : 0;
-	(ft_strcmp(av[1], "-v")) ? (*v_fl = 0) : 0;
-	i = 1 + *v_fl;
-	while (av[i])
+	if (ac > 1)
+	{
+		(!ft_strcmp(av[1], "-v")) ? (*v_fl = 1) : 0;
+		(ft_strcmp(av[1], "-v")) ? (*v_fl = 0) : 0;
+	}
+	i = *v_fl;
+	while (ac > 1 && av[++i])
 	{
 		j = 0;
 		while (av[i][j])
@@ -36,7 +37,6 @@ static int		check(int ac, const char **av, int *v_fl)
 		}
 		if (ft_is_int(av[i]) == 0)
 			return (0);
-		i++;
 	}
 	return (1);
 }
@@ -79,7 +79,7 @@ int				main(int ac, const char **av)
 	if ((v_fl = (int*)malloc(sizeof(int *))) == NULL || !check(ac, av, v_fl) \
 			|| (tmp = (int*)malloc(sizeof(int *))) == NULL)
 		ft_printf("Error\n");
-	else
+	else if (ac > 1)
 	{
 		*tmp = ft_atoi(av[--ac]);
 		lst = ft_lstnew(tmp, sizeof(int));
