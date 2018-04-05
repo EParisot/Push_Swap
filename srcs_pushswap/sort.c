@@ -6,14 +6,14 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/05 11:10:33 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 11:22:03 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 #include "../srcs_common/common.h"
 
-static void	split1(t_list **lst_a, t_list **lst_b)
+static void	quick_split1(t_list **lst_a, t_list **lst_b)
 {
 	int		c;
 	int		med;
@@ -37,7 +37,7 @@ static void	split1(t_list **lst_a, t_list **lst_b)
 	}
 }
 
-static void	sort1(t_list **lst_a, t_list **lst_b, int med)
+static void	select_sort1(t_list **lst_a, t_list **lst_b, int med)
 {
 	int		max;
 	int		c;
@@ -65,7 +65,7 @@ static void	sort1(t_list **lst_a, t_list **lst_b, int med)
 		}
 }
 
-static int	split2(t_list **lst_a, t_list **lst_b, int max)
+static int	quick_split2(t_list **lst_a, t_list **lst_b, int max)
 {
 	int		med;
 	int		c;
@@ -91,7 +91,7 @@ static int	split2(t_list **lst_a, t_list **lst_b, int max)
 	return (max);
 }
 
-static void	sort2(t_list **lst_a, t_list **lst_b, int med)
+static void	select_sort2(t_list **lst_a, t_list **lst_b, int med)
 {
 	int		max;
 	int		c;
@@ -123,14 +123,14 @@ void		sort(t_list **lst_a, t_list **lst_b)
 {
 	int		max;
 
-	split1(lst_a, lst_b);
-	sort1(lst_a, lst_b, 0);
-	max = split2(lst_a, lst_b, 0);
+	quick_split1(lst_a, lst_b);
+	select_sort1(lst_a, lst_b, 0);
+	max = quick_split2(lst_a, lst_b, 0);
 	while (max)
 	{
 		pb(*lst_a, *lst_b);
 		ft_printf("pb\n");
 		max--;
 	}
-	sort2(lst_a, lst_b, 0);
+	select_sort2(lst_a, lst_b, 0);
 }
