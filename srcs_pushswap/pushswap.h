@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 20:59:17 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/05 13:19:48 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:00:27 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
 # include "../GNL/get_next_line.h"
+# include <stdio.h>
 
 void	del(void *content, size_t content_size);
 void	sort(t_list **lst_a, t_list **lst_b);

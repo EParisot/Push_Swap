@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/05 13:38:06 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 15:00:25 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	pushswap(t_list **lst_a)
 		small_sort(lst_a, &lst_b);
 	else
 		sort(lst_a, &lst_b);
-	ft_printf("\n");
+	ft_printf("%c", EOF);
 	ft_lstdel(&lst_b, del);
 }
 
@@ -105,7 +105,7 @@ int			main(int ac, const char **av)
 		}
 		if (!check_doubles(lst))
 			ft_printf("Error\n");
-		else
+		else if (!io(lst))
 			pushswap(&lst);
 		ft_lstdel(&lst, del);
 		free(tmp);
