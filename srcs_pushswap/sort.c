@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 19:10:25 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/31 21:03:58 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 11:06:13 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ static void	split1(t_list **lst_a, t_list **lst_b, int med)
 				pb(*lst_a, *lst_b);
 				ft_printf("pb\n");
 				c--;
-			}
-			else if (isinhalf(*lst_a, ft_lstmin(*lst_a)) >= 0)
-			{
-				rra(lst_a);
-				ft_printf("rra\n");
 			}
 			else
 			{
@@ -71,23 +66,19 @@ static void	sort1(t_list **lst_a, t_list **lst_b, int med)
 
 static int	split2(t_list **lst_a, t_list **lst_b, int max, int c)
 {
+	int		med;
+
 	while (!iro(*lst_b))
 	{
-		c = ft_lstcount(*lst_b) - hmb(*lst_b, \
-		ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2));
+		med = ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2);
+		c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
 		while (c && !iro(*lst_b))
-			if (lastval(*lst_b) >= \
-			ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2))
+			if (lastval(*lst_b) >= med)
 			{
 				pa(*lst_a, *lst_b);
 				ft_printf("pa\n");
 				max++;
 				c--;
-			}
-			else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-			{
-				rrb(lst_b);
-				ft_printf("rrb\n");
 			}
 			else
 			{
