@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/05 13:22:29 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/05 17:15:26 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,11 @@ OBJS2	=	$(SRCS2:.c=.o)
 
 LIBS	=	libft/libft.a \
 			printf/libftprintf.a \
-			~/Library/Frameworks/SDL2.framework/SDL2
+			`sdl2-config --libs`
 
 RM		=	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror `sdl2-config --cflags`
 
 all		:	$(NAME1) $(NAME2) $(LIBS)
 

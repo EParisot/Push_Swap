@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:02:34 by eparisot          #+#    #+#             */
-/*   Updated: 2018/03/21 11:46:58 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/05 17:16:17 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define SDL_PUSHSWAP_H
 
-# include "../../../Library/Frameworks/SDL2.framework/Headers/SDL.h"
+# include <SDL.h>
 # include "../libft/libft.h"
 # include "../printf/srcs/ft_printf.h"
 
