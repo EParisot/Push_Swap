@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:32:15 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/10 20:43:24 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/10 20:44:11 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ static void sort1(t_list **lst_a, t_list **lst_b, int med, int n)
 				ft_printf("rb\n");
 			}
 	}
-	c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
-	if (c > 10)
+	else
 	{
 		med = med + ((med / n) / 2);
 		c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
