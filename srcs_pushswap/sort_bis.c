@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:32:15 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/11 03:00:39 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/11 03:01:40 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ static void		quick_b1(t_list **lst_a, t_list **lst_b, int med)
 		}
 		else
 		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
+			rb(lst_b);
+			ft_printf("rb\n");
 		}
 	while (i--)
 	{
