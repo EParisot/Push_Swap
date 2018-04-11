@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:32:15 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/11 01:54:29 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/11 03:00:39 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		quick_b1(t_list **lst_a, t_list **lst_b, int med)
 	int		i;
 
 	i = 0;
-	c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
+	c = (ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2;
 	med = med + ((ft_lstmax(*lst_b) - med) / 2);
 	while (c)
 		if (lastval(*lst_b) > med)
@@ -79,9 +79,8 @@ static void		quick_b1(t_list **lst_a, t_list **lst_b, int med)
 		}
 		else
 		{
-			rb(lst_b);
-			ft_printf("rb\n");
-			c--;
+			rrb(lst_b);
+			ft_printf("rrb\n");
 		}
 	while (i--)
 	{
