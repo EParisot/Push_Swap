@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:32:15 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/11 14:27:44 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/11 17:22:56 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,200 +36,223 @@ static void		quick_a(t_list **lst_a, t_list **lst_b)
 			}
 	}
 }
-/*
-static void		select_b1(t_list **lst_a, t_list **lst_b, int med)
+
+static void		quick_b(t_list **lst_a, t_list **lst_b)
 {
 	int		c;
+	int		med;
 
-	c = (ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2;
-	while (c)
-		if (lastval(*lst_b) == ft_lstmax(*lst_b))
-		{
-			pa(*lst_a, *lst_b);
-			ft_printf("pa\n");
-			c--;
-		}
-		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
-		}
-		else
-		{
-			rb(lst_b);
-			ft_printf("rb\n");
-		}
-}
-
-static void		quick_b1(t_list **lst_a, t_list **lst_b, int med, int i)
-{
-	med = med + ((ft_lstmax(*lst_b) - med) / 2);
-	while ((ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2)
-		if (lastval(*lst_b) > med)
-		{
-			pa(*lst_a, *lst_b);
-			ft_printf("pa\n");
-			i++;
-		}
-		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
-		}
-		else
-		{
-			rb(lst_b);
-			ft_printf("rb\n");
-		}
-	while (i--)
-	{
-		pb(*lst_a, *lst_b);
-		ft_printf("pb\n");
-	}
-}
-
-static int		quick_b1a(t_list **lst_a, t_list **lst_b, int med, int i)
-{
-	med = med + ((ft_lstmax(*lst_b) - med) / 2);
-	while ((ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2)
-		if (lastval(*lst_b) > med)
-		{
-			pa(*lst_a, *lst_b);
-			ft_printf("pa\n");
-			i++;
-		}
-		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
-		}
-		else
-		{
-			rb(lst_b);
-			ft_printf("rb\n");
-		}
-	return (i);
-}
-
-static int		quick_b1b(t_list **lst_a, t_list **lst_b, int med, int i)
-{
-	med = med + ((ft_lstmax(*lst_b) - med) / 4);
-	while ((ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2)
-		if (lastval(*lst_b) > med)
-		{
-			pa(*lst_a, *lst_b);
-			ft_printf("pa\n");
-			i++;
-		}
-		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
-		}
-		else
-		{
-			rb(lst_b);
-			ft_printf("rb\n");
-		}
-	return (i);
-}
-
-static void		quick_b1c(t_list **lst_a, t_list **lst_b, int med, int i)
-{
-	med = med + ((ft_lstmax(*lst_b) - med) / 8);
-	while ((ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2)
-		if (lastval(*lst_b) > med)
-		{
-			pa(*lst_a, *lst_b);
-			ft_printf("pa\n");
-			i++;
-		}
-		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
-		}
-		else
-		{
-			rb(lst_b);
-			ft_printf("rb\n");
-		}
-	while (i--)
-	{
-		pb(*lst_a, *lst_b);
-		ft_printf("pb\n");
-	}
-}
-
-static void		select_b2(t_list **lst_a, t_list **lst_b, int med)
-{
-	int		c;
-
-	c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
-	while (c)
-		if (lastval(*lst_b) == ft_lstmax(*lst_b))
-		{
-			pa(*lst_a, *lst_b);
-			ft_printf("pa\n");
-			c--;
-		}
-		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
-		{
-			rrb(lst_b);
-			ft_printf("rrb\n");
-		}
-		else
-		{
-			rb(lst_b);
-			ft_printf("rb\n");
-		}
-}
-
-static void		quick_b2(t_list **lst_a, t_list **lst_b, int med, int i)
-{
 	while (!iro(*lst_b))
-		while (ft_lstcount(*lst_b) - hmb(*lst_b, (med = ft_lstmin(*lst_b) + \
-		((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2))) && !iro(*lst_b))
+	{
+		med = ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2);
+		c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
+		while (c)
 			if (lastval(*lst_b) > med)
 			{
 				pa(*lst_a, *lst_b);
 				ft_printf("pa\n");
-				i++;
-			}
-			else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0 && \
-			ft_lstcount(*lst_a) + ft_lstcount(*lst_b) > 101)
-			{
-				rrb(lst_b);
-				ft_printf("rrb\n");
+				c--;
 			}
 			else
 			{
 				rb(lst_b);
 				ft_printf("rb\n");
 			}
-	while (i--)
+	}
+	while ((*lst_b)->content)
 	{
-		pb(*lst_a, *lst_b);
-		ft_printf("pb\n");
+		pa(*lst_a, *lst_b);
+		ft_printf("pa\n");
 	}
 }
 
-static void		select_b3(t_list **lst_a, t_list **lst_b)
+static void		select_a(t_list **lst_a, t_list **lst_b, int med)
 {
 	int		c;
-	int		max;
+
+	c = (ft_lstcount(*lst_a) - hmb(*lst_a, med)) / 2;
+	while (c)
+		if (lastval(*lst_a) == ft_lstmax(*lst_a))
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		quick_a1(t_list **lst_a, t_list **lst_b, int med)
+{
+	int		c;
+
+	med = med + ((ft_lstmax(*lst_a) - med) / 2);
+	c = ft_lstcount(*lst_a) - hmb(*lst_a, med);
+	while (c)
+		if (lastval(*lst_a) > med)
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		quick_a2(t_list **lst_a, t_list **lst_b, int med)
+{
+	int		c;
+	int		tmp;
+
+	tmp = med;
+	med = med + ((ft_lstmax(*lst_a) - med) / 4);
+	c = ft_lstcount(*lst_a) - hmb(*lst_a, med);
+	while (c)
+		if (lastval(*lst_a) > med)
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		select_a1(t_list **lst_a, t_list **lst_b, int med)
+{
+	int		c;
+
+	c = ft_lstcount(*lst_a) - hmb(*lst_a, med);
+	while (c)
+		if (lastval(*lst_a) == ft_lstmax(*lst_a))
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		quick_a1b(t_list **lst_a, t_list **lst_b, int med)
+{
+	int		c;
+
+	med = med - ((med - ft_lstmin(*lst_a)) / 4);
+	c = ft_lstcount(*lst_a) - hmb(*lst_a, med);
+	while (c)
+		if (lastval(*lst_a) > med)
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		quick_a2b(t_list **lst_a, t_list **lst_b, int med)
+{
+	int		c;
+
+	med = med - ((med - ft_lstmin(*lst_a)) / 2);
+	c = ft_lstcount(*lst_a) - hmb(*lst_a, med);
+	while (c)
+		if (lastval(*lst_a) > med)
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		select_a2(t_list **lst_a, t_list **lst_b)
+{
+	int		c;
+
+	c = ft_lstcount(*lst_a);
+	while (c)
+		if (lastval(*lst_a) == ft_lstmax(*lst_a))
+		{
+			pb(*lst_a, *lst_b);
+			ft_printf("pb\n");
+			c--;
+		}
+		else if (isinhalf(*lst_a, ft_lstmax(*lst_a)) >= 0)
+		{
+			rra(lst_a);
+			ft_printf("rra\n");
+		}
+		else
+		{
+			ra(lst_a);
+			ft_printf("ra\n");
+		}
+}
+
+static void		select_b(t_list **lst_a, t_list **lst_b)
+{
+	int		c;
 
 	c = ft_lstcount(*lst_b);
-	max = ft_lstmax(*lst_b);
 	while (c)
-		if (lastval(*lst_b) == max)
+		if (lastval(*lst_b) == ft_lstmax(*lst_b))
 		{
 			pa(*lst_a, *lst_b);
 			ft_printf("pa\n");
-			max = ft_lstmax(*lst_b);
 			c--;
 		}
-		else if (isinhalf(*lst_b, max) >= 0)
+		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
 		{
 			rrb(lst_b);
 			ft_printf("rrb\n");
@@ -240,40 +263,22 @@ static void		select_b3(t_list **lst_a, t_list **lst_b)
 			ft_printf("rb\n");
 		}
 }
-*/
-static int			sort_ter_aux(t_list **lst_a, t_list **lst_b, int med)
-{
-	med = ft_lstmin(*lst_a) + ((ft_lstmax(*lst_a) - ft_lstmin(*lst_a)) / 2);
-	quick_a(lst_a, lst_b);
-	//select_b1(lst_a, lst_b, med);
-	return (med);
-}
 
 void			sort_ter(t_list **lst_a, t_list **lst_b)
 {
-	int		med;
 	int		i;
+	int		med;
 
 	i = 0;
-	med = sort_ter_aux(lst_a, lst_b, 0);/*
-	if (ft_lstcount(*lst_a) + ft_lstcount(*lst_b) > 101)
-	{
-		i = quick_b1a(lst_a, lst_b, med, 0);
-		i = quick_b1b(lst_a, lst_b, med, i);
-		quick_b1c(lst_a, lst_b, med, i);
-	}
-	else
-		quick_b1(lst_a, lst_b, med, 0);
-	select_b2(lst_a, lst_b, med);
-	quick_b2(lst_a, lst_b, med, 0);
-	med = ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2);
-	if (ft_lstcount(*lst_a) + ft_lstcount(*lst_b) > 101)
-	{
-		i = quick_b1a(lst_a, lst_b, med, 0);
-		i = quick_b1b(lst_a, lst_b, med, i);
-		quick_b1c(lst_a, lst_b, med, i);
-	}
-	else
-		quick_b1(lst_a, lst_b, med, 0);
-	select_b3(lst_a, lst_b);*/
+	quick_a(lst_a, lst_b);
+	quick_b(lst_a, lst_b);
+	med = ft_lstmin(*lst_a) + ((ft_lstmax(*lst_a) - ft_lstmin(*lst_a)) / 2);
+	select_a(lst_a, lst_b, med);
+	quick_a1(lst_a, lst_b, med);
+	quick_a2(lst_a, lst_b, med);
+	select_a1(lst_a, lst_b, med);
+	quick_a1b(lst_a, lst_b, med);
+	quick_a2b(lst_a, lst_b, med);
+	select_a2(lst_a, lst_b);
+	select_b(lst_a, lst_b);
 }

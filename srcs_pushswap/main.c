@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/08 20:42:50 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/11 14:22:52 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/11 17:23:43 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	pushswap(t_list **lst_a)
 	else if (ft_lstcount(*lst_a) <= 5)
 		small_sort(lst_a, &lst_b);
 	else
-		sort_ter(lst_a, &lst_b);
+		sort_bis(lst_a, &lst_b);
 	ft_printf("%c", EOF);
 	ft_lstdel(&lst_b, del);
 }
