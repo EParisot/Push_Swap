@@ -6,7 +6,7 @@
 /*   By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/06 18:32:15 by eparisot          #+#    #+#             */
-/*   Updated: 2018/04/11 03:01:40 by eparisot         ###   ########.fr       */
+/*   Updated: 2018/04/11 10:54:45 by eparisot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,20 @@ static void		select_b1(t_list **lst_a, t_list **lst_b, int med)
 		}
 }
 
-static void		quick_b1(t_list **lst_a, t_list **lst_b, int med)
+static void		quick_b1(t_list **lst_a, t_list **lst_b, int med, int i)
 {
-	int		c;
-	int		i;
-
-	i = 0;
-	c = (ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2;
 	med = med + ((ft_lstmax(*lst_b) - med) / 2);
-	while (c)
+	while ((ft_lstcount(*lst_b) - hmb(*lst_b, med)) / 2)
 		if (lastval(*lst_b) > med)
 		{
 			pa(*lst_a, *lst_b);
 			ft_printf("pa\n");
-			c--;
 			i++;
+		}
+		else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0)
+		{
+			rrb(lst_b);
+			ft_printf("rrb\n");
 		}
 		else
 		{
@@ -115,26 +114,26 @@ static void		select_b2(t_list **lst_a, t_list **lst_b, int med)
 
 static void quick_b2(t_list **lst_a, t_list **lst_b, int med, int i)
 {
-	int		c;
-
-while (!iro(*lst_b))
-	{
-		med = ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2);
-		c = ft_lstcount(*lst_b) - hmb(*lst_b, med);
-		while (c && !iro(*lst_b))
-			if (lastval(*lst_b) >= med)
+	while (!iro(*lst_b))
+		while (ft_lstcount(*lst_b) - hmb(*lst_b, (med = ft_lstmin(*lst_b) + \
+		((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2))) && !iro(*lst_b))
+			if (lastval(*lst_b) > med)
 			{
 				pa(*lst_a, *lst_b);
 				ft_printf("pa\n");
 				i++;
-				c--;
+			}
+			else if (isinhalf(*lst_b, ft_lstmax(*lst_b)) >= 0 && \
+			ft_lstcount(*lst_a) + ft_lstcount(*lst_b) > 101)
+			{
+				rrb(lst_b);
+				ft_printf("rrb\n");
 			}
 			else
 			{
 				rb(lst_b);
 				ft_printf("rb\n");
 			}
-	}
 	while (i--)
 	{
 		pb(*lst_a, *lst_b);
@@ -176,10 +175,10 @@ void			sort_bis(t_list **lst_a, t_list **lst_b)
 	med = ft_lstmin(*lst_a) + ((ft_lstmax(*lst_a) - ft_lstmin(*lst_a)) / 2);
 	quick_a(lst_a, lst_b);
 	select_b1(lst_a, lst_b, med);
-	quick_b1(lst_a, lst_b, med);
+	quick_b1(lst_a, lst_b, med, 0);
 	select_b2(lst_a, lst_b, med);
 	quick_b2(lst_a, lst_b, med, 0);
 	med = ft_lstmin(*lst_b) + ((ft_lstmax(*lst_b) - ft_lstmin(*lst_b)) / 2);
-	quick_b1(lst_a, lst_b, med);
+	quick_b1(lst_a, lst_b, med, 0);
 	select_b3(lst_a, lst_b);
 }
