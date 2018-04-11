@@ -6,7 +6,7 @@
 #    By: eparisot <eparisot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/30 19:40:33 by eparisot          #+#    #+#              #
-#    Updated: 2018/04/11 14:24:56 by eparisot         ###   ########.fr        #
+#    Updated: 2018/04/11 19:46:51 by eparisot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ SRCS2	=	srcs_pushswap/main.c \
 			srcs_pushswap/tools2.c \
 			srcs_pushswap/very_small_sort.c \
 			srcs_pushswap/small_sort.c \
-			srcs_pushswap/sort.c \
 			srcs_pushswap/sort_bis.c \
-			srcs_pushswap/sort_ter.c \
+			srcs_pushswap/sort_bis1.c \
+			srcs_pushswap/sort_bis2.c \
 			srcs_common/instructions1.c \
 			srcs_common/instructions2.c \
 			srcs_common/instructions3.c \
