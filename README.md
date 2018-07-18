@@ -1,3 +1,11 @@
-To use the arg_maker ;
+# Push Swap
 
-./checker -v `./arg_maker <min> <max> <nb>`
+42 Algorithmic Project
+
+![](PushSwap.gif)
+
+Usage :
+```
+make
+ARG=`./arg_maker -100 100 199`; ./push_swap $ARG | ./checker -v $ARG
+```
